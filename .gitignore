@@ -1,0 +1,25 @@
+# History files
+.Rhistory
+
+# RStudio files
+.Rproj.user/
+uFTIR.Rproj
+
+# Output files
+inst/extdata/*bin
+inst/extdata/raster_out.tif
+inst/extdata/shape_out/
+raster_out.tif
+shape_out/
+tests/testthat/raster_out.tif
+tests/testthat/shape_out/
+
+# Oversized data-raw
+data-raw/references/*.bsp
+data-raw/references/*.dat
+data-raw/references/*.seq
+
+# Compiled files
+src/*.o
+src/*.so
+src/*.dll

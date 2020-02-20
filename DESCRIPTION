@@ -1,0 +1,56 @@
+Package: uFTIR
+Type: Package
+Title: Process and analyze Agilent Cary 620 FTIR Microscope images
+Version: 0.1.0.900
+Date: 2019-09-05
+Authors@R: 
+    person(
+      given = "Fabio",
+      family = "Corradini",
+      role = c("aut", "cre"),
+      email = "fabio.corradini@inia.cl",
+      comment = c(ORCID = "0000-0001-9696-7643")
+    )
+Maintainer: Suggestions to <fabio.corradini@inia.cl>
+Description: A set of tools to read, preprocess, process, and summarize Agilent Cary 620 uFTIR Microscope outputs
+    primarily intended for microplastics analysis.
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 3.4.4.0),
+    parallel
+Imports:
+    Rcpp (>= 1.0.2),
+    methods,
+    raster,
+    sp,
+    rgdal,
+    GDALPolygonize
+Suggests: 
+    rmarkdown,
+    testthat (>= 2.1.0),
+    prospectr
+LinkingTo: Rcpp, RcppArmadillo
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.0.2
+Collate: 
+    'RcppExports.R'
+    'classes.R'
+    'clipper.R'
+    'datadocs.R'
+    'mosaic_chunk.R'
+    'mosaic_compose.R'
+    'mosaic_info.R'
+    'mosaic_sam.R'
+    'plot_methods.R'
+    'preprocess.R'
+    'profile_methods.R'
+    'smooth_sam.R'
+    'summary_methods.R'
+    'tile_base_corr.R'
+    'tile_read.R'
+    'tile_sam.R'
+    'uFTIR.R'
+    'wavealign.R'
+SystemRequirements: C++11

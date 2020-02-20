@@ -1,0 +1,10 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^data-raw$
+^inst/extdata/*\.bin$
+^inst/extdata/raster_out.tif$
+^inst/extdata/shape_out$
+^tests/testthat/raster_out.tif$
+^tests/testthat/shape_out4$
