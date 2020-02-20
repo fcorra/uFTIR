@@ -1,7 +1,7 @@
 Package: uFTIR
 Type: Package
 Title: Process and analyze Agilent Cary 620 FTIR Microscope images
-Version: 0.1.0.900
+Version: 0.1.0
 Date: 2019-09-05
 Authors@R: 
     person(
@@ -12,8 +12,8 @@ Authors@R:
       comment = c(ORCID = "0000-0001-9696-7643")
     )
 Maintainer: Suggestions to <fabio.corradini@inia.cl>
-Description: A set of tools to read, preprocess, process, and summarize Agilent Cary 620 uFTIR Microscope outputs
-    primarily intended for microplastics analysis.
+Description: A set of tools to read, preprocess, process, and summarize Agilent Cary 620 uFTIR Microscope hyperspectral images
+    primarily intended for microplastic analysis.
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
