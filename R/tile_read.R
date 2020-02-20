@@ -20,6 +20,10 @@ tile_read <- function(bspfile){
   } else if(length(grep("^~", bspfile)) == 1){
     bspfile <- path.expand(bspfile)
     
+  } else if(.Platform$OS.type == "windows" & 
+            length(grep("^[[:upper:]]:.*", bspfile)) == 1){
+    bspfile <- bspfile
+    
   } else if(length(
     grep(paste("^[^", .Platform$file.sep, "]", sep = ""), bspfile)) == 1){
     bspfile <- paste(getwd(), bspfile, sep = .Platform$file.sep)

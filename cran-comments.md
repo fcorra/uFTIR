@@ -1,6 +1,9 @@
 ## Test environments
 * local Debian GNU/Linux 10 (buster), R 3.5.2
 * local Windows 10 Enterprise (1803), R 3.6.1
+* rhub
+    * Debian Linux, R-devel, GCC ASAN/UBSAN
+    *
 
 ## R CMD check results
 There were no ERRORs or WARNIGs.
