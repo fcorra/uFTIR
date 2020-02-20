@@ -25,6 +25,10 @@ csmooth_sam <- function(myCube, wind, bins, nslices) {
     .Call(`_uFTIR_csmooth_sam`, myCube, wind, bins, nslices)
 }
 
+gdal_polygonize <- function(raster, folder, layer, field) {
+    invisible(.Call(`_uFTIR_gdal_polygonize`, raster, folder, layer, field))
+}
+
 mosaic_read_chunk <- function(filename, fpa, wl) {
     .Call(`_uFTIR_mosaic_read_chunk`, filename, fpa, wl)
 }

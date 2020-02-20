@@ -67,7 +67,7 @@ summary_sam <- function(object, mask = NULL, clusternames = NULL,
                       format = "GTiff", overwrite = TRUE)
   
   #require(GDALPolygonize)
-  GDALPolygonize::rgdal_polygonize(raster = "raster_out.tif", 
+  rgdal_polygonize(raster = "raster_out.tif", 
                                    folder = "shape_out",
                                    layer = "clusters", field = "cluster", overwrite = TRUE)
   

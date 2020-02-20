@@ -8,3 +8,4 @@
 ^inst/extdata/shape_out$
 ^tests/testthat/raster_out.tif$
 ^tests/testthat/shape_out4$
+^cran-comments.md$

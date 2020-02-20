@@ -81,6 +81,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// gdal_polygonize
+void gdal_polygonize(const char* raster, const char* folder, const char* layer, const char* field);
+RcppExport SEXP _uFTIR_gdal_polygonize(SEXP rasterSEXP, SEXP folderSEXP, SEXP layerSEXP, SEXP fieldSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const char* >::type raster(rasterSEXP);
+    Rcpp::traits::input_parameter< const char* >::type folder(folderSEXP);
+    Rcpp::traits::input_parameter< const char* >::type layer(layerSEXP);
+    Rcpp::traits::input_parameter< const char* >::type field(fieldSEXP);
+    gdal_polygonize(raster, folder, layer, field);
+    return R_NilValue;
+END_RCPP
+}
 // mosaic_read_chunk
 arma::cube mosaic_read_chunk(char const* filename, int fpa, int wl);
 RcppExport SEXP _uFTIR_mosaic_read_chunk(SEXP filenameSEXP, SEXP fpaSEXP, SEXP wlSEXP) {
@@ -160,6 +173,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_uFTIR_cmosaic_clusterfind", (DL_FUNC) &_uFTIR_cmosaic_clusterfind, 2},
     {"_uFTIR_cmosaic_compose", (DL_FUNC) &_uFTIR_cmosaic_compose, 4},
     {"_uFTIR_csmooth_sam", (DL_FUNC) &_uFTIR_csmooth_sam, 4},
+    {"_uFTIR_gdal_polygonize", (DL_FUNC) &_uFTIR_gdal_polygonize, 4},
     {"_uFTIR_mosaic_read_chunk", (DL_FUNC) &_uFTIR_mosaic_read_chunk, 3},
     {"_uFTIR_mosaic_sam_write", (DL_FUNC) &_uFTIR_mosaic_sam_write, 2},
     {"_uFTIR_read_cube", (DL_FUNC) &_uFTIR_read_cube, 1},

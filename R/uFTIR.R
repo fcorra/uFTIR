@@ -8,7 +8,6 @@
 #' @importFrom graphics plot axis filled.contour points
 #' @importFrom stats approx aggregate
 #' @importFrom grDevices colorRampPalette
-#' @importFrom GDALPolygonize rgdal_polygonize
 #' @importFrom rgdal readOGR
 #' @importFrom sp CRS
 #' @import parallel

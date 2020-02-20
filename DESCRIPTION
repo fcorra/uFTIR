@@ -25,8 +25,7 @@ Imports:
     methods,
     raster,
     sp,
-    rgdal,
-    GDALPolygonize
+    rgdal
 Suggests: 
     rmarkdown,
     testthat (>= 2.1.0),
@@ -46,6 +45,7 @@ Collate:
     'plot_methods.R'
     'preprocess.R'
     'profile_methods.R'
+    'rgdal_polygonize.R'
     'smooth_sam.R'
     'summary_methods.R'
     'tile_base_corr.R'
