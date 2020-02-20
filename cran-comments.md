@@ -14,10 +14,11 @@ There was 1 NOTE:
       extdata   2.3Mb
       libs      6.1Mb
 
-data directory holds a compressed and deflated Spectral Library that makes the identification of microplastics possible.
+/data folder holds a compressed and deflated Spectral Library that makes the identification of microplastics possible. It was tailor-made for the package.
 
-extdata holds minimum examples to run the tests.
+/extdata holds minimum examples to run the tests.
+
+All together the /inst and /data folders are not bigger than 5Mb.
 
 ## Downstream dependency
-I have run R CMD check on downstream dependencies.
-All packages that I could install passed.
+The package does not have reverse dependencies [first release].
