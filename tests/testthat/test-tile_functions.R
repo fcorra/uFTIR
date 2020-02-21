@@ -74,9 +74,10 @@ test_that("Summary methods are equivalent for Smooth, SAM and clipper objects", 
   clip <- toClip(rad = 8, segments = 20, centre = c(10,10))
   z <- clipper(y, centre = clip@centre, rad = clip@rad, slice = 1)
   
-  out1 <- summary_sam(x, mask = clip, smooth = TRUE, window = 3, slice = 1, clusternames = primpke@clusternames)
-  out2 <- summary_sam(y, mask = clip, clusternames = primpke@clusternames)
-  out3 <- summary_sam(z, clusternames = primpke@clusternames)
+  out1 <- summary_sam(x, mask = clip, smooth = TRUE, 
+                      window = 3, slice = 1, clusternames = primpke@clusternames, temporal = TRUE)
+  out2 <- summary_sam(y, mask = clip, clusternames = primpke@clusternames, temporal = TRUE)
+  out3 <- summary_sam(z, clusternames = primpke@clusternames, temporal = TRUE)
   
   expect_true(all.equal(out1, out2) & all.equal(out2, out3))
 })

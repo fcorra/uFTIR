@@ -9,3 +9,4 @@
 ^tests/testthat/raster_out.tif$
 ^tests/testthat/shape_out4$
 ^cran-comments.md$
+^CRAN-RELEASE$

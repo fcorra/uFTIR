@@ -12,7 +12,7 @@ Authors@R:
       comment = c(ORCID = "0000-0001-9696-7643")
     )
 Maintainer: Fabio Corradini <fabio.corradini@inia.cl>
-Description: A set of tools to read, preprocess, process, and summarize Agilent Cary 620 uFTIR Microscope hyperspectral images
+Description: A set of tools to read, process, and summarize Agilent Cary 620 uFTIR Microscope hyperspectral images
     primarily intended for microplastic analysis.
 License: GPL-3
 Encoding: UTF-8

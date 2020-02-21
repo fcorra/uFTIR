@@ -13,7 +13,8 @@ summary_sam(
   clusternames = NULL,
   slice = 1,
   window = NULL,
-  smooth = TRUE
+  smooth = TRUE,
+  temporal = FALSE
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ summary_sam(
 \item{window}{When smooth = TRUE the size of the window for \code{\link{smooth_sam}}.}
 
 \item{smooth}{When object if of class \code{\link[=SAM-class]{SAM}}, should the function silently apply \code{\link{smooth_sam}} before summarizing?.}
+
+\item{temporal}{if TRUE the raster and shape files from which the summary is extracted are written in the working directory.}
 }
 \value{
 A dataframe with three columns showing the cluster number, the area in pixels^2, and the cluster name as character (only if the parameeter clusternames is within the function call). Each row stand for a single particle. The function writes on disk two files "raster_out.tif" which is a raster of the object passed through the object paramenter, and a shape_out "ESRI Shapefile" folder with a shapefile holding a vectorized version of "raster_out.tif".
@@ -41,5 +44,5 @@ Summary method for SAM and Smooth objects.
 x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
 mosaic_sam(x, primpke, n_cores = 1)
 y <- mosaic_compose(x@path, clusterlist = primpke@clusterlist)
-summary_sam(y, clusternames = primpke@clusternames, smooth = FALSE)
+summary_sam(y, clusternames = primpke@clusternames, smooth = FALSE, temporal = TRUE)
 }
