@@ -39,7 +39,7 @@ Summary method for SAM and Smooth objects.
 }
 \examples{
 x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
-mosaic_sam(x, primpke)
+mosaic_sam(x, primpke, n_cores = 1)
 y <- mosaic_compose(x@path, clusterlist = primpke@clusterlist)
 summary_sam(y, clusternames = primpke@clusternames, smooth = FALSE)
 }

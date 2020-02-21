@@ -67,7 +67,7 @@ This function allows you to retrieve the spectra of all pixels that match a give
 }
 \examples{
 x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
-mosaic_sam(x, primpke)
+mosaic_sam(x, primpke, n_cores = 1)
 y <- mosaic_compose(x@path, primpke@clusterlist)
 y <- get_profile_sinfo(y,
                        where = list("info" = x, 

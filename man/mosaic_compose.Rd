@@ -21,7 +21,7 @@ The function will write in the path specified in the \code{\link[=SpectralInfo-c
 }
 \examples{
 x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
-mosaic_sam(x, primpke)
+mosaic_sam(x, primpke, n_cores = 1)
 y <- mosaic_compose(x@path, primpke@clusterlist)
 }
 \seealso{

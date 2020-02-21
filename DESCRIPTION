@@ -14,7 +14,7 @@ Authors@R:
 Maintainer: Fabio Corradini <fabio.corradini@inia.cl>
 Description: A set of tools to read, preprocess, process, and summarize Agilent Cary 620 uFTIR Microscope hyperspectral images
     primarily intended for microplastic analysis.
-License: GPL-3 + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: 

@@ -21,7 +21,7 @@
 #' For a single tile application see \code{\link{tile_sam}}.
 #' @examples
 #' x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
-#' mosaic_sam(x, primpke)
+#' mosaic_sam(x, primpke, n_cores = 1)
 mosaic_sam <- function(info, sref, derivative = NULL, base_corr = TRUE, FUN = NULL, n_cores = NULL){
   
   fname <- gsub(info@path, "", info@file)

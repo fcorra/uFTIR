@@ -38,7 +38,7 @@ The function is using the parallel package, as each tile_sam takes a while to co
 }
 \examples{
 x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
-mosaic_sam(x, primpke)
+mosaic_sam(x, primpke, n_cores = 1)
 }
 \seealso{
 For a single tile application see \code{\link{tile_sam}}.

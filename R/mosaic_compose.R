@@ -15,7 +15,7 @@
 #' \code{\link{mosaic_sam}}
 #' @examples
 #' x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
-#' mosaic_sam(x, primpke)
+#' mosaic_sam(x, primpke, n_cores = 1)
 #' y <- mosaic_compose(x@path, primpke@clusterlist)
 mosaic_compose <- function(path = ".", clusterlist = NULL){
   # get the list of images to process...
