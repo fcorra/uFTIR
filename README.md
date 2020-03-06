@@ -7,7 +7,7 @@ An R package to read and process Agilent Cary 620 FTIR microscope
 -hyperspectral- images. As it is, the package performs image
 classification to look for microplastics in environmental samples.
 
-When I write the packages I took some ideas from:
+When I wrote the package I took some ideas from:
 
 1.  The implementation of the Spectal Angle Mapper algorithm in
     RcppArmadillo was copied from
@@ -23,8 +23,8 @@ When I write the packages I took some ideas from:
     (2018)](https://doi.org/10.1007/s00216-018-1156-x).
 4.  The function read\_tile is based on the Octave/Matlab code of [Alex
     Henderson](https://bitbucket.org/AlexHenderson/agilent-file-formats/src/master/),
-    published [here](https://doi.org/10.5281/zenodo.399238). He save my
-    life solving the Agilent-provides-binary-files problem.
+    published [here](https://doi.org/10.5281/zenodo.399238). He solved
+    the Agilent-provides-binary-files problem.
 
 ## Installation
 
