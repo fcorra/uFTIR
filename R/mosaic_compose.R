@@ -36,7 +36,10 @@ mosaic_compose <- function(path = ".", clusterlist = NULL){
     # Get the tile number for each file
     x <- unlist(strsplit(i, "_"))
     x <- x[grep('[0-9]{4}', x)]
-    x <- as.numeric(gsub('\\.[[:alnum:]]*$', '', x))
+    x <- suppressWarnings(
+      # When the folders have numbered names an NA is returned... see next if clause
+      as.numeric(gsub('\\.[[:alnum:]]*$', '', x))
+    )
     
     # it was a bug: files with numbered names make problems
     # example_07082019/sample_1_0000_0000.bin
