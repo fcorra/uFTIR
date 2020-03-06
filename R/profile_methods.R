@@ -147,6 +147,10 @@ get_profile_sinfo <- function(x, where, dst_cluster, plotpol = TRUE,
   }
   
   true_vector <- tarjet_sub == dst_cluster 
+  if(sum(true_vector) == 0){
+    warning("No dst_cluster in x")
+    return(0)
+  }
   xycords <- matrix(rep(NA), nrow = sum(true_vector), ncol = 2)
   b <- 1
   for(i in 1:nrow(tarjet_sub)){
