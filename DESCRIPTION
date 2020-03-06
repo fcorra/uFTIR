@@ -1,8 +1,8 @@
 Package: uFTIR
 Type: Package
 Title: Process and Analyze Agilent Cary 620 FTIR Microscope Images
-Version: 0.1.0
-Date: 2020-02-20
+Version: 0.1.0.001
+Date: 2020-03-06
 Authors@R: 
     person(
       given = "Fabio",

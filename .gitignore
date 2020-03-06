@@ -13,6 +13,7 @@ raster_out.tif
 shape_out/
 tests/testthat/raster_out.tif
 tests/testthat/shape_out/
+tests/testthat/Rplots.pdf
 
 # Oversized data-raw
 data-raw/references/*.bsp
