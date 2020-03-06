@@ -28,7 +28,7 @@ arma::cube csmooth_sam(arma::cube myCube, int wind, int bins, int nslices){
 
 				// find the mode
 				// we can do that using an histogram
-				std::vector<int> histogram(bins, 0);
+				std::vector<int> histogram(bins+1, 0);
 				for(arma::uword i = 0; i < electors.n_elem; ++i)
 					++histogram[ electors[i] ];
 				int vote = std::max_element( histogram.begin(), histogram.end() ) - histogram.begin();
