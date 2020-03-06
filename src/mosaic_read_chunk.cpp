@@ -23,6 +23,11 @@ arma::cube mosaic_read_chunk(char const* filename, int fpa, int wl)
     arma::cube out = arma::conv_to<arma::cube>::from(tmpout);
     
     is.close();
+    
+    // Transpose the cube, to match uFTIR output
+    // is transposing and flipping the rows
+    for (size_t s = 0; s < out.n_slices; ++s)
+         out.slice(s) = arma::flipud(out.slice(s).t());
 
     return out;
   }

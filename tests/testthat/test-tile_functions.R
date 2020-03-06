@@ -80,6 +80,9 @@ test_that("Summary methods are equivalent for Smooth, SAM and clipper objects", 
   out3 <- summary_sam(z, clusternames = primpke@clusternames, temporal = TRUE)
   
   expect_true(all.equal(out1, out2) & all.equal(out2, out3))
+  
+  out4 <- summary_sam(z, clusternames = NULL, temporal = TRUE)
+  expect_equal(ncol(out4), 2)
 })
 
 test_that("get_profile can plot as side effect", {

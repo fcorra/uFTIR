@@ -11,7 +11,7 @@
 #' @importFrom rgdal readOGR
 #' @importFrom sp CRS
 #' @import parallel
-#' @importMethodsFrom raster raster setValues area writeRaster xyFromCell
+#' @importMethodsFrom raster raster setValues area writeRaster plot
 #' @importClassesFrom raster RasterLayer
 #' @importClassesFrom sp CRS
 NULL

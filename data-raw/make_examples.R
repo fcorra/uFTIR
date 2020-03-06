@@ -92,9 +92,27 @@ for(i in 3:7){
 mosaic_0 <- out[1:10,1:10,]
 mosaic_1 <- out[1:10,11:20,]
 
+## There are some t() and rev() calls when calling a mosaic_read_chunk
+## to counteract the problem, we should do the same here
+flip_forward <- function(out){
+  for(i in 1:dim(out)[3]){out[ , ,i] <- out[nrow(out):1, ,i]}
+  out <- aperm(out, c(2,1,3))
+  out
+}
+
+flip_back <- function(out){
+  out <- aperm(out, c(2,1,3))
+  for(i in 1:dim(out)[3]){out[,,i] <- out[nrow(out):1,,i]}
+  out
+}
+
+mosaic_0 <- flip_forward(mosaic_0)
+mosaic_1 <- flip_forward(mosaic_1)
+
+# Now we save the files
 mosaic_0 <- c(rep(0, times = 255), as.vector(mosaic_0))
 mosaic_1 <- c(rep(0, times = 255), as.vector(mosaic_1))
-rm(list = ls()[-grep("out|ps|bg|mosaic_.|wn", ls())])
+# rm(list = ls()[-grep("out|ps|bg|mosaic_.|wn", ls())])
 writeBin(mosaic_0, "inst/extdata/mosaic_0000_0000.dmd", size=4, endian = 'little')
 writeBin(mosaic_1, "inst/extdata/mosaic_0001_0000.dmd", size=4, endian = 'little')
 
@@ -107,8 +125,18 @@ z <- mosaic_chunk(x, "mosaic_0001_0000.dmd")
 # Same length
 mosaic_0 <- mosaic_0[256:length(mosaic_0)]
 mosaic_1 <- mosaic_1[256:length(mosaic_1)]
-isTRUE(sum(y@Spectra == mosaic_0) == length(mosaic_0))
-isTRUE(sum(z@Spectra == mosaic_1) == length(mosaic_1))
+# Reverse flip
+m0 <- array(mosaic_0, dim = dim(y@Spectra))
+m1 <- array(mosaic_1, dim = dim(z@Spectra))
+m0 <- flip_back(m0)
+m1 <- flip_back(m1)
+
+stopifnot(
+  isTRUE(sum(y@Spectra == m0) == length(mosaic_0))
+)
+stopifnot(
+  isTRUE(sum(z@Spectra == m1) == length(mosaic_1))
+)
 
 # The ps is where it should be
 mosaic_sam(x, primpke)

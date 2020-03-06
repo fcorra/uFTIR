@@ -1,6 +1,8 @@
 #' @include classes.R
 NULL
 
+setClassUnion("asclipper", members = c("SAM", "Smooth"))
+
 #' Visual clipper
 #' 
 #' @description Visual aid to find the right center and radius for the \code{\link{clipper}} function. It does not clip, but return an usable (plotable) object. 
@@ -80,20 +82,50 @@ clipper <- function(tarjet, centre = c(128,128), rad = 120, slice = 1){
     tarjet <- as.matrix(tarjet@smooth[,, slice])
     
   } else if(class(tarjet) == "SAM"){
-    tarjet <- as.matrix(tarjet@clusters[,,slice])
+    tarjet <- as.matrix(tarjet@clusters[,, slice])
     
   } else {
     warning("Tarjet's class is not Smooth\n Tarjet will be treated as matrix")
   }
   
-  # at ploting the cols are inverted, then:
-  centre[1] <- nrow(tarjet)-centre[1]
+  # as ploting the rows are inverted, then:
+  centre[2] <- nrow(tarjet)-centre[2]
   
-  g = expand.grid(1:nrow(tarjet), 1:ncol(tarjet)) #all the coordinates
+  g = expand.grid(1:ncol(tarjet), 1:nrow(tarjet)) #all the coordinates
   g$d2 = sqrt ((g$Var1-centre[1])^2 + (g$Var2-centre[2])^2) #distance to centre
   g$inside = g$d2<=rad #is the distance smaller than the radius
   
-  tarjet[as.matrix(g[!g$inside,c("Var1","Var2")])] <- NA #NA to all values outside
+  tarjet[as.matrix(g[!g$inside,c("Var2","Var1")])] <- NA #NA to all values outside
   class(tarjet) <- c("clipper", "matrix")
   tarjet
+}
+
+#' As Clipper
+#' 
+#' Coerce a \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object to clipper. A function useful to call \code{\link{highlight_substance}} when clipping is not necessary.
+#'
+#' @param object The \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object to be coerced. 
+#' @param Class character. You should live it as default.
+#' @param strict logical. You should live it as default.
+#'
+#' @return
+#' and S3 clipper
+#' 
+#' @export
+#' @examples
+#' x <- tile_read(base::system.file("extdata/tile.bsp", package = "uFTIR"))
+#' x <- tile_base_corr(x)
+#' x <- wavealign(x, primpke)
+#' x <- tile_sam(x)
+#' x <- as.clipper(x)
+as.clipper <- function(object){
+  if(class(object) == "SAM"){
+    x <- object@clusters[,,1]
+    x <- as.matrix(x)
+  } else {
+    x <- object@smooth[,,1]
+    x <- as.matrix(x)  
+  }
+  class(x) <- c("clipper", "matrix")  
+  x
 }

@@ -95,7 +95,9 @@ summary_sam <- function(object, mask = NULL, clusternames = NULL,
   if(!is.null(clusternames)){
     tmp_polymers <- clusternames[tmp@data[,1]]
     out <- cbind(out, tmp_polymers)
+    colnames(out) <- c("cluster", "area", "clname") 
+  } else {
+    colnames(out) <- c("cluster", "area")  
   }
-  colnames(out) <- c("cluster", "area", "clname")
   out
 }
