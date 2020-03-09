@@ -9,10 +9,6 @@ cderivate_cube <- function(myCube, v) {
     .Call(`_uFTIR_cderivate_cube`, myCube, v)
 }
 
-cget_particles <- function(A) {
-    .Call(`_uFTIR_cget_particles`, A)
-}
-
 cmosaic_clusterfind <- function(sam_match, clusters) {
     .Call(`_uFTIR_cmosaic_clusterfind`, sam_match, clusters)
 }

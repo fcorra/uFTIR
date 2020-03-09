@@ -30,17 +30,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cget_particles
-arma::mat cget_particles(arma::mat A);
-RcppExport SEXP _uFTIR_cget_particles(SEXP ASEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type A(ASEXP);
-    rcpp_result_gen = Rcpp::wrap(cget_particles(A));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cmosaic_clusterfind
 arma::cube cmosaic_clusterfind(arma::cube sam_match, arma::rowvec clusters);
 RcppExport SEXP _uFTIR_cmosaic_clusterfind(SEXP sam_matchSEXP, SEXP clustersSEXP) {
@@ -169,7 +158,6 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_uFTIR_cderivate_mat", (DL_FUNC) &_uFTIR_cderivate_mat, 2},
     {"_uFTIR_cderivate_cube", (DL_FUNC) &_uFTIR_cderivate_cube, 2},
-    {"_uFTIR_cget_particles", (DL_FUNC) &_uFTIR_cget_particles, 1},
     {"_uFTIR_cmosaic_clusterfind", (DL_FUNC) &_uFTIR_cmosaic_clusterfind, 2},
     {"_uFTIR_cmosaic_compose", (DL_FUNC) &_uFTIR_cmosaic_compose, 4},
     {"_uFTIR_csmooth_sam", (DL_FUNC) &_uFTIR_csmooth_sam, 4},
