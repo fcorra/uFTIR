@@ -8,10 +8,6 @@ as.clipper(object)
 }
 \arguments{
 \item{object}{The \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object to be coerced.}
-
-\item{Class}{character. You should live it as default.}
-
-\item{strict}{logical. You should live it as default.}
 }
 \value{
 and S3 clipper

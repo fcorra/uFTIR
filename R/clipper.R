@@ -104,9 +104,7 @@ clipper <- function(tarjet, centre = c(128,128), rad = 120, slice = 1){
 #' 
 #' Coerce a \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object to clipper. A function useful to call \code{\link{highlight_substance}} when clipping is not necessary.
 #'
-#' @param object The \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object to be coerced. 
-#' @param Class character. You should live it as default.
-#' @param strict logical. You should live it as default.
+#' @param object The \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object to be coerced.
 #'
 #' @return
 #' and S3 clipper
