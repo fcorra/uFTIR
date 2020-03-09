@@ -29,7 +29,7 @@ Imports:
 Suggests: 
     rmarkdown,
     testthat (>= 2.1.0),
-    prospectr
+    signal
 LinkingTo: Rcpp, RcppArmadillo
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.2

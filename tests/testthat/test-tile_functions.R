@@ -104,11 +104,11 @@ test_that("Preprocess is not changing the output whimsically", {
 })
 
 test_that("Preprocess for SpectralPack object is reshaping the wavenumbers", {
-  library(prospectr)
+  library(signal)
   x <- tile_read(system.file("extdata", "tile.bsp", package="uFTIR"))
   x <- tile_base_corr(x)
   x <- wavealign(x, primpke)
-  preprocess(x, function(x){savitzkyGolay(x, 1, 3, 11, delta.wav = 2)})
+  preprocess(x, function(x){sgolayfilt(x)})
   
   expect_true(dim(x@Readings@Spectra)[3] == length(x@Readings@wavenumbers))
   expect_true(ncol(x@Reference@Spectra) == length(x@Reference@wavenumbers))
