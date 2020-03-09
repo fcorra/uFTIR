@@ -49,9 +49,9 @@ arma::ucube sam_match(arma::cube myCube)
 
   arma::ucube out(size(myCube));
 
-  for(int i = 0; i < myCube.n_rows; ++i)
+  for(arma::uword i = 0; i < myCube.n_rows; ++i)
   {
-    for(int j = 0; j < myCube.n_cols; ++j)
+    for(arma::uword j = 0; j < myCube.n_cols; ++j)
     {
       arma::vec match = myCube.tube(i, j);
       out.tube(i, j) = arma::sort_index(match, "ascend");
