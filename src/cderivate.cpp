@@ -9,7 +9,7 @@ arma::mat cderivate_mat(arma::mat X, arma::rowvec v)
   
   arma::rowvec diff_v = arma::diff(v);
   
-  for(int i = 0; i < X.n_rows; ++i)
+  for(arma::uword i = 0; i < X.n_rows; ++i)
   {
     dydx.row(i) = arma::diff(X.row(i)) - diff_v;
   }
@@ -25,9 +25,9 @@ arma::cube cderivate_cube(arma::cube myCube, arma::vec v)
   
   arma::vec diff_v = arma::diff(v);
   
-  for(int i = 0; i < myCube.n_rows; ++i)
+  for(arma::uword i = 0; i < myCube.n_rows; ++i)
   {
-    for(int j = 0; j < myCube.n_cols; ++j)
+    for(arma::uword j = 0; j < myCube.n_cols; ++j)
     {
       dydx.tube(i,j) = arma::diff(vectorise(myCube.tube(i,j))) - diff_v;
     }
