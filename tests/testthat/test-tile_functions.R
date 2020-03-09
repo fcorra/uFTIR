@@ -103,14 +103,15 @@ test_that("Preprocess is not changing the output whimsically", {
   expect_true(sum(y@Spectra == x@Spectra) == prod(dim(x@Spectra)))
 })
 
-test_that("Preprocess for SpectralPack object is reshaping the wavenumbers", {
-  library(signal)
-  x <- tile_read(system.file("extdata", "tile.bsp", package="uFTIR"))
-  x <- tile_base_corr(x)
-  x <- wavealign(x, primpke)
-  preprocess(x, function(x){sgolayfilt(x)})
-  
-  expect_true(dim(x@Readings@Spectra)[3] == length(x@Readings@wavenumbers))
-  expect_true(ncol(x@Reference@Spectra) == length(x@Reference@wavenumbers))
-  expect_true(length(x@Readings@wavenumbers) == length(x@Reference@wavenumbers))
-})
+if(requireNamespace("signal", quietly = TRUE)){
+  test_that("Preprocess for SpectralPack object is reshaping the wavenumbers", {
+    x <- tile_read(system.file("extdata", "tile.bsp", package="uFTIR"))
+    x <- tile_base_corr(x)
+    x <- wavealign(x, primpke)
+    preprocess(x, function(x){signal::sgolayfilt(x)})
+    
+    expect_true(dim(x@Readings@Spectra)[3] == length(x@Readings@wavenumbers))
+    expect_true(ncol(x@Reference@Spectra) == length(x@Reference@wavenumbers))
+    expect_true(length(x@Readings@wavenumbers) == length(x@Reference@wavenumbers))
+  })
+}

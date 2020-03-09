@@ -21,26 +21,25 @@ NULL
 #' # The function allows interacting with other R packages that provide common features
 #' # for spectra analysis. For example, you can use the package "signal" to run
 #' # a Savitzky-Golay filter.
-#' 
-#' if("signal" %in% installed.packages()[,1]){
-#' 
-#' library(signal)
+#'
+#' if(requireNamespace("signal", quietly = TRUE)){
 #' 
 #' # for Tile objects. NOTE that after the preprocess x@wavenumbers does not match dim(x@Spectra)[3]
 #' x <- tile_read(base::system.file("extdata/tile.bsp", package = "uFTIR"))
-#' x <- preprocess(x, function(x){sgolayfilt(x)})
+#' x <- preprocess(x, function(x){signal::sgolayfilt(x)})
 #' dim(x@Spectra)[3] == length(x@wavenumbers) # BEWARE!
 #' 
 #' # for SpectralPack objects
 #' x <- tile_read(base::system.file("extdata/tile.bsp", package = "uFTIR"))
 #' x <- tile_base_corr(x)
 #' x <- wavealign(x, primpke)
-#' preprocess(x, function(x){sgolayfilt(x)})
+#' preprocess(x, function(x){signal::sgolayfilt(x)})
 #' 
 #' # Here the problem with the wavenumbers is gone
 #' dim(x@Readings@Spectra)[3] == length(x@Readings@wavenumbers)
 #' dim(x@Reference@Spectra)[3] == length(x@Reference@wavenumbers)
 #' length(x@Readings@wavenumbers) == length(x@Reference@wavenumbers)
+#' 
 #' }
 #' 
 setGeneric("preprocess", function(data, FUN){warning("Method defined only for Tiles...")})
