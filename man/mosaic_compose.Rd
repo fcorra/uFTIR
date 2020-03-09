@@ -4,12 +4,21 @@
 \alias{mosaic_compose}
 \title{Mosaic compose}
 \usage{
-mosaic_compose(path = ".", clusterlist = NULL)
+mosaic_compose(
+  path = ".",
+  clusterlist = NULL,
+  nslices = NULL,
+  drop_raw = FALSE
+)
 }
 \arguments{
 \item{path}{Where are the binary files? you can use the 'path' slot of the \code{\link[=SpectralInfo-class]{SpectralInfo}} instead of enter it manually.}
 
 \item{clusterlist}{The clusterlist vector that you passed along with the \code{\link[=SpectralReference-class]{SpectralReference}} in the call to \code{\link{mosaic_sam}}.}
+
+\item{nslices}{If you deal with large mosaics, you might want to load only a few of the sam matches. This argument allows you to define up to which match you want to load to R.}
+
+\item{drop_raw}{If you are not interested in the angles you can set this argument to TRUE and avoid load them to R.}
 }
 \value{
 An object of class \code{\link[=SAM-class]{SAM}}.

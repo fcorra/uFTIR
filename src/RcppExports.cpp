@@ -43,8 +43,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // cmosaic_compose
-arma::cube cmosaic_compose(Rcpp::StringVector file, arma::mat xy_pos, int xmax, int ymax);
-RcppExport SEXP _uFTIR_cmosaic_compose(SEXP fileSEXP, SEXP xy_posSEXP, SEXP xmaxSEXP, SEXP ymaxSEXP) {
+arma::cube cmosaic_compose(Rcpp::StringVector file, arma::mat xy_pos, int xmax, int ymax, int zmax);
+RcppExport SEXP _uFTIR_cmosaic_compose(SEXP fileSEXP, SEXP xy_posSEXP, SEXP xmaxSEXP, SEXP ymaxSEXP, SEXP zmaxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -52,7 +52,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat >::type xy_pos(xy_posSEXP);
     Rcpp::traits::input_parameter< int >::type xmax(xmaxSEXP);
     Rcpp::traits::input_parameter< int >::type ymax(ymaxSEXP);
-    rcpp_result_gen = Rcpp::wrap(cmosaic_compose(file, xy_pos, xmax, ymax));
+    Rcpp::traits::input_parameter< int >::type zmax(zmaxSEXP);
+    rcpp_result_gen = Rcpp::wrap(cmosaic_compose(file, xy_pos, xmax, ymax, zmax));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -159,7 +160,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_uFTIR_cderivate_mat", (DL_FUNC) &_uFTIR_cderivate_mat, 2},
     {"_uFTIR_cderivate_cube", (DL_FUNC) &_uFTIR_cderivate_cube, 2},
     {"_uFTIR_cmosaic_clusterfind", (DL_FUNC) &_uFTIR_cmosaic_clusterfind, 2},
-    {"_uFTIR_cmosaic_compose", (DL_FUNC) &_uFTIR_cmosaic_compose, 4},
+    {"_uFTIR_cmosaic_compose", (DL_FUNC) &_uFTIR_cmosaic_compose, 5},
     {"_uFTIR_csmooth_sam", (DL_FUNC) &_uFTIR_csmooth_sam, 4},
     {"_uFTIR_gdal_polygonize", (DL_FUNC) &_uFTIR_gdal_polygonize, 4},
     {"_uFTIR_mosaic_read_chunk", (DL_FUNC) &_uFTIR_mosaic_read_chunk, 3},

@@ -13,8 +13,8 @@ cmosaic_clusterfind <- function(sam_match, clusters) {
     .Call(`_uFTIR_cmosaic_clusterfind`, sam_match, clusters)
 }
 
-cmosaic_compose <- function(file, xy_pos, xmax, ymax) {
-    .Call(`_uFTIR_cmosaic_compose`, file, xy_pos, xmax, ymax)
+cmosaic_compose <- function(file, xy_pos, xmax, ymax, zmax) {
+    .Call(`_uFTIR_cmosaic_compose`, file, xy_pos, xmax, ymax, zmax)
 }
 
 csmooth_sam <- function(myCube, wind, bins, nslices) {

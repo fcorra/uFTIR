@@ -6,6 +6,8 @@
 #' 
 #' @param path Where are the binary files? you can use the 'path' slot of the \code{\link[=SpectralInfo-class]{SpectralInfo}} instead of enter it manually.
 #' @param clusterlist The clusterlist vector that you passed along with the \code{\link[=SpectralReference-class]{SpectralReference}} in the call to \code{\link{mosaic_sam}}.
+#' @param nslices If you deal with large mosaics, you might want to load only a few of the sam matches. This argument allows you to define up to which match you want to load to R.
+#' @param drop_raw If you are not interested in the angles you can set this argument to TRUE and avoid load them to R.
 #'
 #' @return
 #' An object of class \code{\link[=SAM-class]{SAM}}.
@@ -17,7 +19,7 @@
 #' x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
 #' mosaic_sam(x, primpke, n_cores = 1)
 #' y <- mosaic_compose(x@path, primpke@clusterlist)
-mosaic_compose <- function(path = ".", clusterlist = NULL){
+mosaic_compose <- function(path = ".", clusterlist = NULL, nslices = NULL, drop_raw = FALSE){
   # get the list of images to process...
   # oldpath <- getwd()
   # setwd(path)
@@ -28,7 +30,12 @@ mosaic_compose <- function(path = ".", clusterlist = NULL){
   #   imagefiles[i] <- paste(getwd(), imagefiles[i], sep = .Platform$file.sep)
   # }
   # setwd(oldpath)
-
+  
+  if(is.null(nslices)){
+    #the user wants all slices
+    nslices <- -1
+  } 
+  
   # get the order of the images...
   # Do we need to change x,y to y,x? Check please!
   xy <- c()
@@ -84,8 +91,12 @@ mosaic_compose <- function(path = ".", clusterlist = NULL){
   ### End of fix.
   
   out <- list()
-  out$raw_sam <- cmosaic_compose(sam_files, xy_pos, max(xy_pos[,1]), max(xy_pos[,2]))
-  out$match_sam <- cmosaic_compose(sub_files, xy_pos, max(xy_pos[,1]), max(xy_pos[,2]))
+  if(drop_raw){
+    out$raw_sam <- array(0, dim = c(1,1,1)) 
+  } else {
+    out$raw_sam <- cmosaic_compose(sam_files, xy_pos, max(xy_pos[,1]), max(xy_pos[,2]), -1)  
+  }
+  out$match_sam <- cmosaic_compose(sub_files, xy_pos, max(xy_pos[,1]), max(xy_pos[,2]), nslices)
  
   if(!is.null(clusterlist)){
     out$clusters <- cmosaic_clusterfind(out$match_sam, as.vector(clusterlist))  

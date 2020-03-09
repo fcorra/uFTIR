@@ -31,3 +31,22 @@ test_that("The program can preprocess within mosaic_sam calls", {
   expect_true(mosaic_sam(x, primpke, FUN = function(x){x}, n_cores = 1))
   expect_s4_class(y <- mosaic_compose(x@path, primpke@clusterlist), "SAM")
 })
+
+test_that("Can load only a few slices", {
+  x <- mosaic_info(system.file("extdata", "mosaic.dmt", package = "uFTIR"))
+  mosaic_sam(x, primpke, FUN = function(x){x}, n_cores = 1)
+  y <- mosaic_compose(x@path, primpke@clusterlist, nslices = 2, drop_raw = TRUE)
+  z <- mosaic_compose(x@path, primpke@clusterlist, nslices = 2, drop_raw = FALSE)
+  w <- mosaic_compose(x@path, primpke@clusterlist, nslices = NULL, drop_raw = FALSE)
+  
+  t_test <- 
+    all(
+      sum(dim(y@raw_sam)) == 3,
+      all(dim(w@raw_sam) == dim(w@substances) & dim(w@clusters) == dim(w@substances)),
+      length(primpke@clusterlist) == dim(z@raw_sam)[3],
+      all(z@raw_sam == w@raw_sam),
+      all(y@substances == w@substances[,,c(1,2)])
+    )
+  
+  expect_true(t_test)
+})
