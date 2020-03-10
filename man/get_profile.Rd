@@ -47,11 +47,11 @@ get_profile_sinfo(
 
 \item{dst_cluster}{The expectra of the pixels that match which cluster/substance should be retrieved?}
 
-\item{plotpol}{Should the function plot x and overlay with countour lines where the requested substance lies? TRUE/FALSE}
+\item{plotpol}{If true, the function will plot x and overlay countour lines highlighting dst_cluster. TRUE/FALSE.}
 
-\item{plotpt}{Should the function plot x and overlay with points where the requested substance lies? TRUE/FALSE}
+\item{plotpt}{If true, the function will plot x and draw points over the pixels that match dst_cluster. For mosaics, the points will be only in the chunk selected in where. TRUE/FALSE.}
 
-\item{cluster}{If class(x) == "SAM", Should the substances or the clusters be used for analysis? TRUE means that the clusters are used, FALSE that the substances. See dst_cluster.}
+\item{cluster}{If class(x) == "SAM", Should the substances or the clusters be used for analysis? TRUE means that the clusters are used, FALSE that the substances. If you set the argument to FALSE, dst_cluster and clusternames should be adjusted. Use the name of the substance and the substances list from the \code{\link[=SpectralReference-class]{SpectralReference}}.}
 
 \item{slice}{If the object is of class \code{\link[=SAM-class]{sam}} or \code{\link[=Smooth-class]{Smooth}}, Which slice of them should be considered when retrieving the pixel locations?}
 

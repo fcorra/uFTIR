@@ -12,9 +12,9 @@ setClassUnion("togetprofile", members = c("SAM", "Smooth", "clipper"))
 #' @param x Object of class \code{\link[=SAM-class]{sam}}, \code{\link[=Smooth-class]{Smooth}} or \code{\link{clipper}} that hold the processed tile/mosaic indicated in where.
 #' @param where Original object processed. It might by of class \code{\link[=Tile-class]{Tile}} or \code{\link[=SpectralInfo-class]{SpectralInfo}}. However, in the second case, where should be a labeled list of two elements one the \code{\link[=SpectralInfo-class]{SpectralInfo}} object (labeled "info"), and the other the tarjet dmd file (as a character labeled "dmdfile").
 #' @param dst_cluster The expectra of the pixels that match which cluster/substance should be retrieved?
-#' @param plotpol Should the function plot x and overlay with countour lines where the requested substance lies? TRUE/FALSE
-#' @param plotpt Should the function plot x and overlay with points where the requested substance lies? TRUE/FALSE
-#' @param cluster If class(x) == "SAM", Should the substances or the clusters be used for analysis? TRUE means that the clusters are used, FALSE that the substances. See dst_cluster.
+#' @param plotpol If true, the function will plot x and overlay countour lines highlighting dst_cluster. TRUE/FALSE.
+#' @param plotpt If true, the function will plot x and draw points over the pixels that match dst_cluster. For mosaics, the points will be only in the chunk selected in where. TRUE/FALSE.
+#' @param cluster If class(x) == "SAM", Should the substances or the clusters be used for analysis? TRUE means that the clusters are used, FALSE that the substances. If you set the argument to FALSE, dst_cluster and clusternames should be adjusted. Use the name of the substance and the substances list from the \code{\link[=SpectralReference-class]{SpectralReference}}.
 #' @param slice If the object is of class \code{\link[=SAM-class]{sam}} or \code{\link[=Smooth-class]{Smooth}}, Which slice of them should be considered when retrieving the pixel locations?
 #' @param clusternames if is.character(dst_cluster) you should provide a vector with the clusternames to coerse dst_cluster to numeric.
 #' @param ... other parameters for plot.raster.
