@@ -92,7 +92,7 @@ mosaic_compose <- function(path = ".", clusterlist = NULL, nslices = NULL, drop_
   
   out <- list()
   if(drop_raw){
-    out$raw_sam <- array(0, dim = c(1,1,1)) 
+    out$raw_sam <- array(NA, c(0,0,0))
   } else {
     out$raw_sam <- cmosaic_compose(sam_files, xy_pos, max(xy_pos[,1]), max(xy_pos[,2]), -1)  
   }

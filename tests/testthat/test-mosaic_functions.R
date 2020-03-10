@@ -41,7 +41,7 @@ test_that("Can load only a few slices", {
   
   t_test <- 
     all(
-      sum(dim(y@raw_sam)) == 3,
+      sum(dim(y@raw_sam)) == 0,
       all(dim(w@raw_sam) == dim(w@substances) & dim(w@clusters) == dim(w@substances)),
       length(primpke@clusterlist) == dim(z@raw_sam)[3],
       all(z@raw_sam == w@raw_sam),
