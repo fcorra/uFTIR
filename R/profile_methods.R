@@ -226,7 +226,9 @@ get_profile_sinfo <- function(x, where, dst_cluster, plotpol = TRUE,
   
   if(plotpt){
     plot(buff_tarjet_sub, ...)
-    points(buff_xycord[,2] ~ buff_xycord[,1], cex = 0.5)
+    # The cols are rev...
+    rev_cols <- (nrow(tarjet_sub)+1) - buff_xycord[,2]
+    points(rev_cols ~ buff_xycord[,1], cex = 0.5)
   }
   
   return(profile)
