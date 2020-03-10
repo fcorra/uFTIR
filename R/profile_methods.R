@@ -196,6 +196,12 @@ get_profile_sinfo <- function(x, where, dst_cluster, plotpol = TRUE,
   filter <- filter_row & filter_col
   
   xycords <- xycords[filter, ]
+  
+  if(nrow(xycords) == 0){
+    #the cluster/sub is not in the chunk
+    warning("No dst_cluster in x")
+    return(0)
+  }
  
   if(plotpt){
     buff_xycord <- xycords
