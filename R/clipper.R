@@ -105,6 +105,7 @@ clipper <- function(tarjet, centre = c(128,128), rad = 120, slice = 1){
 #' Coerce a \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object to clipper. A function useful to call \code{\link{highlight_substance}} when clipping is not necessary.
 #'
 #' @param object The \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object to be coerced.
+#' @param slice The slice to keep (a clipper is essentially a matrix).
 #'
 #' @return
 #' and S3 clipper
@@ -116,12 +117,12 @@ clipper <- function(tarjet, centre = c(128,128), rad = 120, slice = 1){
 #' x <- wavealign(x, primpke)
 #' x <- tile_sam(x)
 #' x <- as.clipper(x)
-as.clipper <- function(object){
+as.clipper <- function(object, slice = 1){
   if(class(object) == "SAM"){
-    x <- object@clusters[,,1]
+    x <- object@clusters[,,slice]
     x <- as.matrix(x)
   } else {
-    x <- object@smooth[,,1]
+    x <- object@smooth[,,slice]
     x <- as.matrix(x)  
   }
   class(x) <- c("clipper", "matrix")  

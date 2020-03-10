@@ -4,10 +4,12 @@
 \alias{as.clipper}
 \title{As Clipper}
 \usage{
-as.clipper(object)
+as.clipper(object, slice = 1)
 }
 \arguments{
 \item{object}{The \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object to be coerced.}
+
+\item{slice}{The slice to keep (a clipper is essentially a matrix).}
 }
 \value{
 and S3 clipper
