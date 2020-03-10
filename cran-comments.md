@@ -1,75 +1,72 @@
+## Resubmission/patched version.
+The package first version scored some errors in its way to CRAN because:
+* I did not include the call to requireNamespace when loading suggested packages, and;
+* One of the suggested packages was archived the day after the package was sent.
+
+I've changed the package dependencies, and I call now requireNamespace before loading each of the suggested packages.
+
+I've re-run the checks both locally and in the remote machines. I present a summary of the outputs bellow.
+
 ## Test environments
-* local Debian GNU/Linux 10 (buster), R 3.5.2
-* local Linux Mint 18.3 (Sylvia), R 3.4.4
+* local Debian GNU/Linux 10 (buster), R 3.5.2, GCC 8.3.0
+* win-builder.r
+	* R-devel, R Under development (unstable) (2020-01-28 r77738)
 * rhub
-    * Debian Linux, R-devel, GCC ASAN/UBSAN
-    * Debian Linux, R-release, GCC
-    * Fedora Linux, R-devel, GCC
-    * Fedora Linux, R-devel, clang, gfortran
-    * Windows Server 2008 R2 SP1, R-release, 32/64 bit
+	* Fedora Linux, R-devel, GCC 
+	* Windows Server 2008 R2 SP1, R-release, 32/64 bit
 
 ## R CMD check results
-### on local 
-0 errors | 0 warnings | 2 notes
-
-There were 2 NOTEs:
-
+### local 
+**2 NOTEs**
 * checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘Fabio Corradini <fabio.corradini@inia.cl>’
 
-  Maintainer: ‘Fabio Corradini <fabio.corradini@inia.cl>’
-  New submission
+Days since last update: 4
 
 * checking installed package size ... NOTE
-  installed size is 10.8Mb
+  installed size is 10.0Mb
   sub-directories of 1Mb or more:
     data      2.0Mb
     extdata   2.3Mb
-    libs      6.1Mb
+    libs      5.4Mb
 
-		/data folder holds a compressed and deflated Spectral Library that makes the identification of microplastics possible. It was tailor-made for the package.
-		/extdata holds minimum examples to run the tests.
-		All together the /inst and /data are not bigger than 5Mb.
-
-### on rhub
-The NOTEs were slightly different in rhub Windows Server 2008 R2 SP1, R-release, 32/64 bit:
-
+### win-builder.r
+**2 NOTEs**
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Fabio Corradini <fabio.corradini@inia.cl>'
 
-New submission
-
-Possibly mis-spelled words in DESCRIPTION:
-  Agilent (3:28, 15:73)
-  hyperspectral (15:107)
-  microplastic (16:28)
-  preprocess (15:38)
-  uFTIR (15:90)
-  FTIR (3:45)
-
-		I checked the words and they are not misspelled.
+Days since last update: 4
 
 * checking installed package size ... NOTE
-  installed size is 38.1Mb
+  installed size is 82.4Mb
+  sub-directories of 1Mb or more:
+    data      2.0Mb
+    extdata   2.3Mb
+    gdal      3.9Mb
+    libs     69.0Mb
+    proj      5.0Mb
+
+### rhub
+
+#### Fedora
+**NOTE:**
+
+* checking installed package size ... NOTE
+  installed size is 10.1Mb
+  sub-directories of 1Mb or more:
+    data      2.0Mb
+    extdata   2.3Mb
+    libs      5.5Mb
+
+#### Windows Server
+**NOTE:**
+
+* checking installed package size ... NOTE
+  installed size is 38.0Mb
   sub-directories of 1Mb or more:
     data      2.0Mb
     extdata   2.3Mb
     gdal      3.8Mb
-    libs     24.7Mb
+    libs     24.6Mb
     proj      5.0Mb
 
-		On windows gdal is installed along with the package.
-
-
-I got one extra NOTE for Fedora Linux, R-devel, clang, gfortran
-
-* checking examples ... NOTE
-Examples with CPU (user + system) or elapsed time > 5s
-                 user system elapsed
-summary\_sam    0.632  0.016   9.494
-get\_profile    0.056  0.004   6.907
-mosaic\_compose 0.056  0.000   5.721
-mosaic\_sam     0.052  0.004   5.972
-
-		I did not get the NOTE for Fedora Linux, R-devel, GCC. I think the problem is related with the compiler.
-
-I got an 'OK' for Debian Linux, R-devel, GCC ASAN/UBSAN 
