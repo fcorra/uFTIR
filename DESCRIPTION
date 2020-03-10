@@ -27,7 +27,6 @@ Imports:
     sp,
     rgdal
 Suggests: 
-    rmarkdown,
     testthat (>= 2.1.0),
     signal
 LinkingTo: Rcpp, RcppArmadillo

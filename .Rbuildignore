@@ -10,3 +10,4 @@
 ^tests/testthat/shape_out4$
 ^cran-comments.md$
 ^CRAN-RELEASE$
+^windows$
