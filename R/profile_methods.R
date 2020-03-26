@@ -282,6 +282,7 @@ get_profile_all <- function(x, where, dst_cluster, fpa, waves){
   b <- 1
   profile <- matrix(rep(NA), ncol =length(waves), nrow =nrow(xycords))
   for(i in where){
+    print(i)
     loc <- grep(i, list.files(pattern = "\\.dmd"))
     
     # cropping the coordinates to the requested extent
@@ -293,7 +294,7 @@ get_profile_all <- function(x, where, dst_cluster, fpa, waves){
     
     filter <- filter_row & filter_col
     
-    chunk_xycords <- xycords[filter, ]
+    chunk_xycords <- matrix(xycords[filter, ], ncol = 2)
     
     if(nrow(chunk_xycords) == 0){
       next
