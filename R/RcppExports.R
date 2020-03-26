@@ -17,6 +17,10 @@ cmosaic_compose <- function(file, xy_pos, xmax, ymax, zmax) {
     .Call(`_uFTIR_cmosaic_compose`, file, xy_pos, xmax, ymax, zmax)
 }
 
+csam_load <- function(filename) {
+    .Call(`_uFTIR_csam_load`, filename)
+}
+
 csmooth_sam <- function(myCube, wind, bins, nslices) {
     .Call(`_uFTIR_csmooth_sam`, myCube, wind, bins, nslices)
 }
@@ -35,6 +39,10 @@ mosaic_sam_write <- function(A, filename) {
 
 read_cube <- function(x) {
     .Call(`_uFTIR_read_cube`, x)
+}
+
+sam_internal <- function(x, em) {
+    .Call(`_uFTIR_sam_internal`, x, em)
 }
 
 sam_main <- function(myCube, em) {

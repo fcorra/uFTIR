@@ -4,8 +4,10 @@
 \alias{get_profile}
 \alias{get_profile,togetprofile,Tile-method}
 \alias{get_profile,togetprofile,list-method}
+\alias{get_profile,clipper,character-method}
 \alias{get_profile_tile}
 \alias{get_profile_sinfo}
+\alias{get_profile_all}
 \title{Get profile}
 \usage{
 get_profile(x, where, ...)
@@ -13,6 +15,8 @@ get_profile(x, where, ...)
 \S4method{get_profile}{togetprofile,Tile}(x, where, ...)
 
 \S4method{get_profile}{togetprofile,list}(x, where, ...)
+
+\S4method{get_profile}{clipper,character}(x, where, dst_cluster, fpa, waves)
 
 get_profile_tile(
   x,
@@ -37,15 +41,21 @@ get_profile_sinfo(
   clusternames = NULL,
   ...
 )
+
+get_profile_all(x, where, dst_cluster, fpa, waves)
 }
 \arguments{
 \item{x}{Object of class \code{\link[=SAM-class]{sam}}, \code{\link[=Smooth-class]{Smooth}} or \code{\link{clipper}} that hold the processed tile/mosaic indicated in where.}
 
-\item{where}{Original object processed. It might by of class \code{\link[=Tile-class]{Tile}} or \code{\link[=SpectralInfo-class]{SpectralInfo}}. However, in the second case, where should be a labeled list of two elements one the \code{\link[=SpectralInfo-class]{SpectralInfo}} object (labeled "info"), and the other the tarjet dmd file (as a character labeled "dmdfile").}
+\item{where}{Original object processed. It might by of class \code{\link[=Tile-class]{Tile}} or \code{\link[=SpectralInfo-class]{SpectralInfo}}. However, in the second case, where should be a labeled list of two elements one the \code{\link[=SpectralInfo-class]{SpectralInfo}} object (labeled "info"), and the other the tarjet dmd file (as a character labeled "dmdfile"). For get_profile_all it is a character vector with the *.dmd files that you want to retrieve.}
 
 \item{...}{other parameters for plot.raster.}
 
 \item{dst_cluster}{The expectra of the pixels that match which cluster/substance should be retrieved?}
+
+\item{fpa}{The fpa size, used in get_profile_all}
+
+\item{waves}{The wavenumbers, used in get_profile_all}
 
 \item{plotpol}{If true, the function will plot x and overlay countour lines highlighting dst_cluster. TRUE/FALSE.}
 
@@ -64,6 +74,8 @@ matrix with the columns matching the wavenumbers of 'where'.
 To check whether the program is doing a good job or not (an the library is appropriate), it is usually a good idea to recover the expectra of all the pixels that match a given cluster or substance to plot the spectra and compare it to a standard (the library entrance for that cluster/substance for example).
 
 This function allows you to retrieve the spectra of all pixels that match a given cluster/substance and returns a matrix that can then be plotted to do the checking. It also allows the user to plot the object and overlay the points that match a feature. The latter can be achieved also by using the \code{\link{highlight_substance}} function. However, that function is only implemented for S3 "clipper" objects, so this might be a way to overcome that limitation.
+
+get_profile_all will replace get_profile_sinfo some day. For now it does the same thing BUT it works only for clipper objects and you need to pass the fpa size and the wavenumber (waves) vector. It was designed to run in the cluster. It goes well with \code{\link{sam_write}}, \code{\link{sam_load}}.
 }
 \examples{
 x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))

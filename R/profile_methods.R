@@ -5,12 +5,14 @@ setClassUnion("togetprofile", members = c("SAM", "Smooth", "clipper"))
 
 #' Get profile
 #' 
-#' @description To check whether the program is doing a good job or not (an the library is appropriate), it is usually a good idea to recover the expectra of all the pixels that match a given cluster or substance to plot the spectra and compare it to a standard (the library entrance for that cluster/substance for example). 
+#' @description To check whether the program is doing a good job or not (an the library is appropriate), it is usually a good idea to recover the expectra of all the pixels that match a given cluster or substance to plot the spectra and compare it to a standard (the library entrance for that cluster/substance for example).
 #' 
 #' This function allows you to retrieve the spectra of all pixels that match a given cluster/substance and returns a matrix that can then be plotted to do the checking. It also allows the user to plot the object and overlay the points that match a feature. The latter can be achieved also by using the \code{\link{highlight_substance}} function. However, that function is only implemented for S3 "clipper" objects, so this might be a way to overcome that limitation. 
+#' 
+#' get_profile_all will replace get_profile_sinfo some day. For now it does the same thing BUT it works only for clipper objects and you need to pass the fpa size and the wavenumber (waves) vector. It was designed to run in the cluster. It goes well with \code{\link{sam_write}}, \code{\link{sam_load}}.
 #'
 #' @param x Object of class \code{\link[=SAM-class]{sam}}, \code{\link[=Smooth-class]{Smooth}} or \code{\link{clipper}} that hold the processed tile/mosaic indicated in where.
-#' @param where Original object processed. It might by of class \code{\link[=Tile-class]{Tile}} or \code{\link[=SpectralInfo-class]{SpectralInfo}}. However, in the second case, where should be a labeled list of two elements one the \code{\link[=SpectralInfo-class]{SpectralInfo}} object (labeled "info"), and the other the tarjet dmd file (as a character labeled "dmdfile").
+#' @param where Original object processed. It might by of class \code{\link[=Tile-class]{Tile}} or \code{\link[=SpectralInfo-class]{SpectralInfo}}. However, in the second case, where should be a labeled list of two elements one the \code{\link[=SpectralInfo-class]{SpectralInfo}} object (labeled "info"), and the other the tarjet dmd file (as a character labeled "dmdfile"). For get_profile_all it is a character vector with the *.dmd files that you want to retrieve.
 #' @param dst_cluster The expectra of the pixels that match which cluster/substance should be retrieved?
 #' @param plotpol If true, the function will plot x and overlay countour lines highlighting dst_cluster. TRUE/FALSE.
 #' @param plotpt If true, the function will plot x and draw points over the pixels that match dst_cluster. For mosaics, the points will be only in the chunk selected in where. TRUE/FALSE.
@@ -18,6 +20,8 @@ setClassUnion("togetprofile", members = c("SAM", "Smooth", "clipper"))
 #' @param slice If the object is of class \code{\link[=SAM-class]{sam}} or \code{\link[=Smooth-class]{Smooth}}, Which slice of them should be considered when retrieving the pixel locations?
 #' @param clusternames if is.character(dst_cluster) you should provide a vector with the clusternames to coerse dst_cluster to numeric.
 #' @param ... other parameters for plot.raster.
+#' @param fpa The fpa size, used in get_profile_all
+#' @param waves The wavenumbers, used in get_profile_all
 #'
 #' @return
 #' matrix with the columns matching the wavenumbers of 'where'.
@@ -43,6 +47,13 @@ setMethod("get_profile", c(x = "togetprofile", where = "Tile"),
 #' @rdname get_profile
 setMethod("get_profile", c(x = "togetprofile", where = "list"),
           function(x, where, ...) get_profile_sinfo(x, where, ...))
+
+#' @export
+#' @rdname get_profile
+setMethod("get_profile", c(x = "clipper", where = "character"),
+          function(x, where, dst_cluster, fpa, waves){
+            get_profile_all(x, where, dst_cluster, fpa, waves)
+          })
 
 #' @export
 #' @rdname get_profile
@@ -212,7 +223,7 @@ get_profile_sinfo <- function(x, where, dst_cluster, plotpol = TRUE,
   xycords[,1] <- xycords[,1] - trunc((max(xycords[,1])-0.00001) / where$info@fpasize) * where$info@fpasize
   xycords[,2] <- xycords[,2] - trunc((max(xycords[,2])-0.00001) / where$info@fpasize) * where$info@fpasize
   
-  where <- mosaic_chunk(where$info, where$dmdfile)
+  where <- mosaic_chunk(info = where$info, dmdfile = where$dmdfile)
   
   profile <- matrix(rep(NA), nrow = nrow(xycords), ncol = length(where@wavenumbers))
   for(i in 1:nrow(xycords)){
@@ -233,3 +244,74 @@ get_profile_sinfo <- function(x, where, dst_cluster, plotpol = TRUE,
   
   return(profile)
 }
+
+###
+# get_profile_all ----
+###
+
+#' @export
+#' @rdname get_profile
+get_profile_all <- function(x, where, dst_cluster, fpa, waves){
+  
+  true_vector <- x == dst_cluster 
+  
+  xycords <- matrix(rep(NA), nrow = sum(true_vector, na.rm=TRUE), ncol = 2)
+  b <- 1
+  for(i in 1:nrow(x)){
+    for(j in 1:ncol(x)){
+      if(!is.na(true_vector[i,j]) && true_vector[i, j]){
+        xycords[b,1] <- j
+        xycords[b,2] <- i
+        b <- b+1
+      }
+    }
+  }
+  
+  ## Get the Agilent possition of all single tiles
+  fig_size <- list.files(pattern = "\\.dmd")
+  fig_size <- strsplit(gsub("[^0-9_]+", "",fig_size), "_")
+  fig_size <- t(sapply(fig_size, function(x){c(x[length(x)-1], x[length(x)])}))
+  fig_size <- matrix(as.numeric(fig_size), nrow=nrow(fig_size),ncol=ncol(fig_size))
+  
+  # Get out version of the file numbers (which is correct)
+  x_alt <- rep(seq(range(fig_size)[1], range(fig_size)[2]), each = max(fig_size) +1)
+  y_alt <- rep(seq(range(fig_size)[1], range(fig_size)[2]), times = max(fig_size) +1)
+  
+  xy_alt <- cbind(x_alt, y_alt)
+  
+  b <- 1
+  profile <- matrix(rep(NA), ncol =length(waves), nrow =nrow(xycords))
+  for(i in where){
+    loc <- grep(i, list.files(pattern = "\\.dmd"))
+    
+    # cropping the coordinates to the requested extent
+    filter_row <- (fpa * xy_alt[loc, 2]) < xycords[, 1] & 
+      xycords[, 1] < ((fpa * (xy_alt[loc, 2] + 1))+1)
+    
+    filter_col <- (fpa * xy_alt[loc, 1]) < xycords[, 2] & 
+      xycords[, 2] < ((fpa * (xy_alt[loc, 1] + 1))+1)
+    
+    filter <- filter_row & filter_col
+    
+    chunk_xycords <- xycords[filter, ]
+    
+    if(nrow(chunk_xycords) == 0){
+      next
+    }
+    
+    #reshaping xycord to match the mosaic_chunk
+    #the 0.00001 is to avoid 1/1 = 1 problem (the border condition)
+    chunk_xycords[,1] <- chunk_xycords[,1] - trunc((max(chunk_xycords[,1])-0.00001) / fpa) * fpa
+    chunk_xycords[,2] <- chunk_xycords[,2] - trunc((max(chunk_xycords[,2])-0.00001) / fpa) * fpa
+    
+    target <- mosaic_chunk(dmdfile = i, fpa = fpa, wl = waves)
+    
+    for(j in 1:nrow(chunk_xycords)){
+      profile[b, ]<- target@Spectra[chunk_xycords[j,2], chunk_xycords[j,1], ]
+      b <- b+1
+    }
+    
+  }
+  return(profile)
+}
+

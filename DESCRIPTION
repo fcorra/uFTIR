@@ -1,7 +1,7 @@
 Package: uFTIR
 Type: Package
 Title: Process and Analyze Agilent Cary 620 FTIR Microscope Images
-Version: 0.1.1
+Version: 0.1.1.006
 Date: 2020-03-10
 Authors@R: 
     person(
@@ -31,12 +31,13 @@ Suggests:
     signal
 LinkingTo: Rcpp, RcppArmadillo
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Collate: 
     'RcppExports.R'
     'classes.R'
     'clipper.R'
     'datadocs.R'
+    'matrix_sam.r'
     'mosaic_chunk.R'
     'mosaic_compose.R'
     'mosaic_info.R'
@@ -45,6 +46,8 @@ Collate:
     'preprocess.R'
     'profile_methods.R'
     'rgdal_polygonize.R'
+    'sam_load.R'
+    'sam_write.r'
     'smooth_sam.R'
     'summary_methods.R'
     'tile_base_corr.R'

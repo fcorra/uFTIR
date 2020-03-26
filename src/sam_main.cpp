@@ -1,6 +1,7 @@
 #include <RcppArmadillo.h>
 // [[Rcpp::depends(RcppArmadillo)]]
 
+// [[Rcpp::export]]
 arma::mat sam_internal(arma::mat& x, arma::mat& em) {
   int ns = x.n_rows;
   int nend = em.n_rows;

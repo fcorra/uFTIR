@@ -40,7 +40,7 @@ mosaic_sam <- function(info, sref, derivative = NULL, base_corr = TRUE, FUN = NU
   
   parLapply(cl, dmdfiles,
             function(x){
-              out <- mosaic_chunk(info, x)
+              out <- mosaic_chunk(info=info, dmdfile=x)
               if(base_corr){
                 out <- tile_base_corr(out)
               }

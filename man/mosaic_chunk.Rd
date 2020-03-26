@@ -4,12 +4,18 @@
 \alias{mosaic_chunk}
 \title{Mosaic chunk}
 \usage{
-mosaic_chunk(info, dmdfile)
+mosaic_chunk(info, path, dmdfile, fpa, wl)
 }
 \arguments{
-\item{info}{\code{\link[=SpectralInfo-class]{SpectralInfo}} object.}
+\item{info}{Optional. \code{\link[=SpectralInfo-class]{SpectralInfo}} object.}
 
-\item{dmdfile}{tarjet .dmd file to read.}
+\item{path}{Optional. Path to dmdfile. Overwrites the path on the info object.}
+
+\item{dmdfile}{Target *.dmd file to read.}
+
+\item{fpa}{If info is missing, you should indicate the fpa size of the chunk.}
+
+\item{wl}{If info is missing, you should indicate the wavenumbers at which you read your data}
 }
 \value{
 A \code{\link[=Tile-class]{Tile}} object.
@@ -19,6 +25,6 @@ The function read a single mosaic tile (.dmd file extension) using a \code{\link
 }
 \examples{
 x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
-y <- mosaic_chunk(x, "mosaic_0000_0000.dmd")
+y <- mosaic_chunk(info = x, dmdfile = "mosaic_0000_0000.dmd")
 class(y)
 }

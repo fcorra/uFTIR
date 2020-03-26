@@ -3,6 +3,9 @@
 
 # uFTIR
 
+**THE BRANCH hcl HAS MODIFICATIONS TO ADAPT THE PACKAGE TO THE
+HIGH-PERFORMANCE CLUSTER**
+
 An R package to read and process Agilent Cary 620 FTIR microscope
 -hyperspectral- images. As it is, the package performs image
 classification to look for microplastics in environmental samples.

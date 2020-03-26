@@ -3,7 +3,7 @@
 
 # RStudio files
 .Rproj.user/
-uFTIR.Rproj
+*.Rproj
 
 # Output files
 inst/extdata/*bin

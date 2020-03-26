@@ -57,6 +57,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// csam_load
+arma::cube csam_load(char const* filename);
+RcppExport SEXP _uFTIR_csam_load(SEXP filenameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< char const* >::type filename(filenameSEXP);
+    rcpp_result_gen = Rcpp::wrap(csam_load(filename));
+    return rcpp_result_gen;
+END_RCPP
+}
 // csmooth_sam
 arma::cube csmooth_sam(arma::cube myCube, int wind, int bins, int nslices);
 RcppExport SEXP _uFTIR_csmooth_sam(SEXP myCubeSEXP, SEXP windSEXP, SEXP binsSEXP, SEXP nslicesSEXP) {
@@ -120,6 +131,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// sam_internal
+arma::mat sam_internal(arma::mat& x, arma::mat& em);
+RcppExport SEXP _uFTIR_sam_internal(SEXP xSEXP, SEXP emSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type em(emSEXP);
+    rcpp_result_gen = Rcpp::wrap(sam_internal(x, em));
+    return rcpp_result_gen;
+END_RCPP
+}
 // sam_main
 arma::cube sam_main(arma::cube myCube, arma::mat em);
 RcppExport SEXP _uFTIR_sam_main(SEXP myCubeSEXP, SEXP emSEXP) {
@@ -161,11 +184,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"_uFTIR_cderivate_cube", (DL_FUNC) &_uFTIR_cderivate_cube, 2},
     {"_uFTIR_cmosaic_clusterfind", (DL_FUNC) &_uFTIR_cmosaic_clusterfind, 2},
     {"_uFTIR_cmosaic_compose", (DL_FUNC) &_uFTIR_cmosaic_compose, 5},
+    {"_uFTIR_csam_load", (DL_FUNC) &_uFTIR_csam_load, 1},
     {"_uFTIR_csmooth_sam", (DL_FUNC) &_uFTIR_csmooth_sam, 4},
     {"_uFTIR_gdal_polygonize", (DL_FUNC) &_uFTIR_gdal_polygonize, 4},
     {"_uFTIR_mosaic_read_chunk", (DL_FUNC) &_uFTIR_mosaic_read_chunk, 3},
     {"_uFTIR_mosaic_sam_write", (DL_FUNC) &_uFTIR_mosaic_sam_write, 2},
     {"_uFTIR_read_cube", (DL_FUNC) &_uFTIR_read_cube, 1},
+    {"_uFTIR_sam_internal", (DL_FUNC) &_uFTIR_sam_internal, 2},
     {"_uFTIR_sam_main", (DL_FUNC) &_uFTIR_sam_main, 2},
     {"_uFTIR_sam_match", (DL_FUNC) &_uFTIR_sam_match, 1},
     {"_uFTIR_ctile_sam", (DL_FUNC) &_uFTIR_ctile_sam, 2},

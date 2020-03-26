@@ -1,6 +1,7 @@
 #' Process and analyze Agilent Cary 620 FTIR Microscope images
 #' 
 #' @name uFTIR
+#' @description Process and analyze Agilent Cary 620 FTIR Microscope images
 #' @docType package
 #' @useDynLib uFTIR, .registration = TRUE
 #' @importFrom Rcpp evalCpp
