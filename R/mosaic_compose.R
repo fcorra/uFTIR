@@ -24,7 +24,7 @@ mosaic_compose <- function(path = ".", clusterlist = NULL, nslices = NULL, drop_
   # oldpath <- getwd()
   # setwd(path)
 
-  imagefiles <- list.files(path = path, pattern = "*[0-9]{4}_[0-9]{4}\\.bin",
+  imagefiles <- list.files(path = path, pattern = "*[0-9]{4}_[0-9]{4}\\.bin$",
                            full.names = TRUE)
   # for (i in 1:length(imagefiles)) {
   #   imagefiles[i] <- paste(getwd(), imagefiles[i], sep = .Platform$file.sep)
