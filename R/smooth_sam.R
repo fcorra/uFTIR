@@ -1,6 +1,6 @@
 #' Smooth a Spectral Angle Mapper output
 #'
-#' @description The function makes a smooth version of the object returned by \code{\link{tile_sam}} or \code{\link{mosaic_compose}}. The function smooths out only the cluste slot, slicing it to a user-given range of slices.
+#' @description The function makes a smooth version of the object returned by \code{\link{tile_sam}} or \code{\link{mosaic_compose}}. The function smooths out only the cluster slot, slicing it to a user-given range of slices.
 #'
 #' @param x Object of class \code{\link[=SAM-class]{SAM}}.
 #' @param nclusters How many clusters did the spectral library had? This parameter refer back to the length of the clusterlist slot of the \code{\link[=SpectralReference-class]{SpectralReference}} object used when calling \code{\link{tile_sam}} or \code{\link{mosaic_sam}}. It should be an integer.

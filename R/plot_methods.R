@@ -131,7 +131,7 @@ highlight_substance <- function(x, dst_cluster,
   }
   
   hsub <- x
-  for(i in dst_cluster){hsub <- x == i}
+  hsub <- matrix(x %in% dst_cluster, nrow = nrow(hsub), ncol = ncol(hsub))
   hsub[is.na(x)] <- NA
   class(hsub) <- c("matrix")
   

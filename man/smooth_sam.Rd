@@ -21,7 +21,7 @@ An S4 object of class \code{\link[=Smooth-class]{Smooth}}. It has only one slot 
 The returned object has methods to plot, summarize, and extract profiles by calling the generics \code{\link[graphics]{plot}}, \code{\link[base]{summary}}, and \code{\link{get_profile}}. You might have to provide extra arguments. You can refer to the see also section to look for the object specific methods.
 }
 \description{
-The function makes a smooth version of the object returned by \code{\link{tile_sam}} or \code{\link{mosaic_compose}}. The function smooths out only the cluste slot, slicing it to a user-given range of slices.
+The function makes a smooth version of the object returned by \code{\link{tile_sam}} or \code{\link{mosaic_compose}}. The function smooths out only the cluster slot, slicing it to a user-given range of slices.
 }
 \examples{
 a <- matrix(c(1,1,1,1,3,3,
