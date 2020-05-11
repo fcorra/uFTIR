@@ -1,8 +1,8 @@
 Package: uFTIR
 Type: Package
 Title: Process and Analyze Agilent Cary 620 FTIR Microscope Images
-Version: 0.1.1.011
-Date: 2020-03-10
+Version: 0.1.2
+Date: 2020-05-11
 Authors@R: 
     person(
       given = "Fabio",
@@ -56,4 +56,4 @@ Collate:
     'tile_sam.R'
     'uFTIR.R'
     'wavealign.R'
-SystemRequirements: C++11
+SystemRequirements: C++11, GDAL >= 1.11.4, PROJ.4 (proj >= 4.8.0)

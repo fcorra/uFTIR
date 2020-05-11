@@ -1,78 +1,88 @@
-# Resubmission comments
-The package first version scored some errors in its way to CRAN because:
-* I did not include the call to requireNamespace when loading suggested packages, and;
-* One of the suggested packages was archived the day after the package was sent.
+# 0.1.2 Version comments
 
-I've changed the package dependencies, and I call now requireNamespace before loading each of the suggested packages.
+The package second version (0.1.1) had an issue when compiling in CRAN's macOS and OS X platforms because:
 
-I've re-run the checks both locally and in the remote machines. I present a summary of the outputs bellow.
+* I assumed the user installed GDAL using homebrew (and not KingChaos's GDAL).
+
+I add a confingure file that fix the problem for all platforms I could test.
+
+I've re-run the checks both locally and in remote machines. I present a summary of the outputs bellow.
 
 # Test environments
+
 * local Debian GNU/Linux 10 (buster), R 3.5.2, GCC 8.3.0
-* win-builder.r
-	* R-devel, R Under development (unstable) (2020-01-28 r77738)
+* Win-builder
+	* R release (R version 4.0.0)
 * rhub
-	* Fedora Linux, R-devel, GCC 
-	* Windows Server 2008 R2 SP1, R-release, 32/64 bit
+	* Fedora Linux, R-devel, clang, gfortran
+	* Windows Server 2008 R2 SP1, R-devel, 32/64 bit
+	* Debian Linux, R-devel, GCC ASAN/UBSAN
+	* macOS 10.13.6 High Sierra, R-release, CRAN's setup [Where it failed last time]
 
 # R CMD check results
+
 ## local 
 
-**2 NOTEs**
-
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: ‘Fabio Corradini <fabio.corradini@inia.cl>’
-
-Days since last update: 4
+**NOTE:**
 
 * checking installed package size ... NOTE
-  installed size is 10.0Mb
+  installed size is 10.7Mb
   sub-directories of 1Mb or more:
     data      2.0Mb
     extdata   2.3Mb
-    libs      5.4Mb
+    libs      6.1Mb
 
 ## win-builder.r
 
-**2 NOTEs**
-
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: 'Fabio Corradini <fabio.corradini@inia.cl>'
-
-Days since last update: 4
+**NOTE:**
 
 * checking installed package size ... NOTE
-  installed size is 82.4Mb
+  installed size is 83.1Mb
   sub-directories of 1Mb or more:
     data      2.0Mb
     extdata   2.3Mb
     gdal      3.9Mb
-    libs     69.0Mb
+    libs     69.6Mb
     proj      5.0Mb
 
 ## rhub
 
-### Fedora
+### Fedora Linux, R-devel, clang, gfortran
 
 **NOTE:**
 
 * checking installed package size ... NOTE
-  installed size is 10.1Mb
+  installed size is  7.2Mb
   sub-directories of 1Mb or more:
     data      2.0Mb
     extdata   2.3Mb
-    libs      5.5Mb
+    libs      2.5Mb
 
-### Windows Server
+### Windows Server 2008 R2 SP1, R-devel, 32/64 bit
 
 **NOTE:**
 
 * checking installed package size ... NOTE
-  installed size is 38.0Mb
+  installed size is 83.0Mb
   sub-directories of 1Mb or more:
     data      2.0Mb
     extdata   2.3Mb
     gdal      3.8Mb
-    libs     24.6Mb
     proj      5.0Mb
+    libs     69.6Mb
+
+### Debian Linux, R-devel, GCC ASAN/UBSAN
+
+**OK**
+
+### macOS 10.13.6 High Sierra, R-release, CRAN's setup [Where it failed last time]
+
+**NOTE:**
+
+* checking installed package size ... NOTE
+  installed size is 26.1Mb
+  sub-directories of 1Mb or more:
+    data      2.0Mb
+    extdata   2.3Mb
+    libs     21.5Mb
 
