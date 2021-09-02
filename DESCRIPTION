@@ -24,6 +24,7 @@ Imports:
     Rcpp (>= 1.0.2),
     methods,
     raster,
+    rgeos,
     rgdal,
     sp
 Suggests: 
