@@ -69,25 +69,25 @@ summary_sam <- function(object, mask = NULL, clusternames = NULL,
                       paste(tempdir(), "raster_out.tif", sep = .Platform$file.sep),
                       format = "GTiff", overwrite = TRUE)
   
-  #require(GDALPolygonize)
-  rgdal_polygonize(raster = paste(tempdir(), "raster_out.tif", sep = .Platform$file.sep), 
-                                   folder = paste(tempdir(), "shape_out", sep = .Platform$file.sep),
-                                   layer = "clusters", field = "cluster", overwrite = TRUE)
-  
-  tmp <- rgdal::readOGR(paste(tempdir(), "shape_out", sep = .Platform$file.sep), "clusters", verbose = F)
-  
+  tmp <- raster::rasterToPolygons(src_raster,
+                   fun=NULL, n=8, na.rm=TRUE, digits=12, dissolve=TRUE)
+  rgdal::writeOGR (tmp, 
+                   paste (tempdir(), "shape_out", sep = .Platform$file.sep),
+                   layer = paste("out_", 
+                                 gsub("-", "", gsub("[0-9]\\.", "", as.character(round(rnorm(1), 5)))),
+                                 sep = ""),
+                   driver = "ESRI Shapefile")
   } else {
     raster::writeRaster(src_raster,
                         "raster_out.tif",
                         format = "GTiff", overwrite = TRUE)
-    
-    #require(GDALPolygonize)
-    rgdal_polygonize(raster = "raster_out.tif", 
-                     folder = "shape_out",
-                     layer = "clusters", field = "cluster", overwrite = TRUE)
-    
-    tmp <- rgdal::readOGR("shape_out", "clusters", verbose = F)
-    
+  tmp <- raster::rasterToPolygons(src_raster, n=8, na.rm=TRUE, digits=12, dissolve=TRUE)
+  rgdal::writeOGR (tmp, 
+                   "shape_out",
+                   layer = paste("out_",
+                                 gsub("-", "", gsub("[0-9]\\.", "", as.character(round(rnorm(1), 5)))),
+                                 sep = ""),
+                   driver = "ESRI Shapefile")
   }
   
   tmp_area <- raster::area(tmp)

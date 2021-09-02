@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // cderivate_mat
 arma::mat cderivate_mat(arma::mat X, arma::rowvec v);
 RcppExport SEXP _uFTIR_cderivate_mat(SEXP XSEXP, SEXP vSEXP) {
@@ -80,19 +85,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type nslices(nslicesSEXP);
     rcpp_result_gen = Rcpp::wrap(csmooth_sam(myCube, wind, bins, nslices));
     return rcpp_result_gen;
-END_RCPP
-}
-// gdal_polygonize
-void gdal_polygonize(const char* raster, const char* folder, const char* layer, const char* field);
-RcppExport SEXP _uFTIR_gdal_polygonize(SEXP rasterSEXP, SEXP folderSEXP, SEXP layerSEXP, SEXP fieldSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const char* >::type raster(rasterSEXP);
-    Rcpp::traits::input_parameter< const char* >::type folder(folderSEXP);
-    Rcpp::traits::input_parameter< const char* >::type layer(layerSEXP);
-    Rcpp::traits::input_parameter< const char* >::type field(fieldSEXP);
-    gdal_polygonize(raster, folder, layer, field);
-    return R_NilValue;
 END_RCPP
 }
 // mosaic_read_chunk
@@ -186,7 +178,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_uFTIR_cmosaic_compose", (DL_FUNC) &_uFTIR_cmosaic_compose, 5},
     {"_uFTIR_csam_load", (DL_FUNC) &_uFTIR_csam_load, 1},
     {"_uFTIR_csmooth_sam", (DL_FUNC) &_uFTIR_csmooth_sam, 4},
-    {"_uFTIR_gdal_polygonize", (DL_FUNC) &_uFTIR_gdal_polygonize, 4},
     {"_uFTIR_mosaic_read_chunk", (DL_FUNC) &_uFTIR_mosaic_read_chunk, 3},
     {"_uFTIR_mosaic_sam_write", (DL_FUNC) &_uFTIR_mosaic_sam_write, 2},
     {"_uFTIR_read_cube", (DL_FUNC) &_uFTIR_read_cube, 1},

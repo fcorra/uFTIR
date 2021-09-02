@@ -7,10 +7,9 @@
 #' @importFrom Rcpp evalCpp
 #' @importFrom methods new setMethod setClassUnion
 #' @importFrom graphics plot axis filled.contour points
-#' @importFrom stats approx aggregate
+#' @importFrom stats approx aggregate rnorm
 #' @importFrom grDevices colorRampPalette
-#' @importFrom rgdal readOGR
-#' @importFrom sp CRS
+#' @importFrom sp CRS write.asciigrid
 #' @import parallel
 #' @importMethodsFrom raster raster setValues area writeRaster plot
 #' @importClassesFrom raster RasterLayer

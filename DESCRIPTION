@@ -1,8 +1,8 @@
 Package: uFTIR
 Type: Package
 Title: Process and Analyze Agilent Cary 620 FTIR Microscope Images
-Version: 0.1.2
-Date: 2020-05-11
+Version: 0.1.3
+Date: 2021-09-02
 Authors@R: 
     person(
       given = "Fabio",
@@ -19,19 +19,19 @@ Encoding: UTF-8
 LazyData: true
 Depends: 
     R (>= 3.4.4.0),
-    parallel
+    parallel,
 Imports:
     Rcpp (>= 1.0.2),
     methods,
     raster,
-    sp,
-    rgdal
+    rgdal,
+    sp
 Suggests: 
     testthat (>= 2.1.0),
     signal
 LinkingTo: Rcpp, RcppArmadillo
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Collate: 
     'RcppExports.R'
     'classes.R'
@@ -46,7 +46,6 @@ Collate:
     'plot_methods.R'
     'preprocess.R'
     'profile_methods.R'
-    'rgdal_polygonize.R'
     'sam_load.R'
     'sam_write.r'
     'smooth_sam.R'
@@ -56,4 +55,4 @@ Collate:
     'tile_sam.R'
     'uFTIR.R'
     'wavealign.R'
-SystemRequirements: C++11, GDAL >= 1.11.4, PROJ.4 (proj >= 4.8.0)
+SystemRequirements: C++11

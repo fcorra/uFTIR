@@ -59,12 +59,14 @@ test_that("Summary methods are equivalent for Smooth and SAM objects", {
   
   out1 <- summary_sam(x, mask = NULL, 
                       smooth = TRUE, window = 3, 
-                      slice = 1, clusternames = primpke@clusternames)
+                      slice = 1, clusternames = primpke@clusternames,
+                      temporal = TRUE)
   x <- smooth_sam(x, as.integer(length(primpke@clusternames)), window = 3, nslices = 1)
-  out2 <- summary_sam(x, clusternames = primpke@clusternames)
+  out2 <- summary_sam(x, clusternames = primpke@clusternames, temporal = TRUE)
   expect_equal(out1, out2)
 })
 
+library("rgdal")
 test_that("Summary methods are equivalent for Smooth, SAM and clipper objects", {
   x <- tile_read(system.file("extdata", "tile.bsp", package="uFTIR"))
   x <- tile_base_corr(x)

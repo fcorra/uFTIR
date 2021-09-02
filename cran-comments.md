@@ -1,88 +1,44 @@
-# 0.1.2 Version comments
+# 0.1.3 Version comments
 
-The package second version (0.1.1) had an issue when compiling in CRAN's macOS and OS X platforms because:
+The package last version (0.1.2) was archived on 02 September 2021 as it used
+proj_api.h headers from PROJ4. Since PROJ8 removed the header, the package
+installation failed.
 
-* I assumed the user installed GDAL using homebrew (and not KingChaos's GDAL).
+To fix the problem, I removed GDAL and PROJ from the SystemRequirements.  The
+package has now two new dependences; rgdal, and rgeos.
 
-I add a confingure file that fix the problem for all platforms I could test.
-
-I've re-run the checks both locally and in remote machines. I present a summary of the outputs bellow.
+I have checked the package both locally and remotelly, and I present a summary
+of the outputs (**NOTES: 2**).
 
 # Test environments
 
-* local Debian GNU/Linux 10 (buster), R 3.5.2, GCC 8.3.0
-* Win-builder
-	* R release (R version 4.0.0)
-* rhub
-	* Fedora Linux, R-devel, clang, gfortran
-	* Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-	* Debian Linux, R-devel, GCC ASAN/UBSAN
-	* macOS 10.13.6 High Sierra, R-release, CRAN's setup [Where it failed last time]
+## Local
+   Linux 5.10.0-8-amd64 #1 SMP Debian 5.10.46-4 (2021-08-03) x86_64 GNU/Linux
+   Debian GNU/Linux 11 (bullseye)
+   gcc (Debian 10.2.1-6) 10.2.1 20210110
 
-# R CMD check results
+## Winbuilder
 
-## local 
+
+## Rhub
+
+# Check results
 
 **NOTE:**
+* checking CRAN incoming feasibility ... NOTE
+   New submission
+   Package was archived on CRAN
+   CRAN repository db overrides:
+     X-CRAN-Comment: Archived on 2021-09-02 as check problems were not
+       corrected in time.
+     Requires obsolete PROJ interface, so fail with PROJ 8 (despite the
+       SystemRequirements).
 
+**NOTE:**
 * checking installed package size ... NOTE
-  installed size is 10.7Mb
+  installed size is 10.5Mb
   sub-directories of 1Mb or more:
     data      2.0Mb
     extdata   2.3Mb
-    libs      6.1Mb
-
-## win-builder.r
-
-**NOTE:**
-
-* checking installed package size ... NOTE
-  installed size is 83.1Mb
-  sub-directories of 1Mb or more:
-    data      2.0Mb
-    extdata   2.3Mb
-    gdal      3.9Mb
-    libs     69.6Mb
-    proj      5.0Mb
-
-## rhub
-
-### Fedora Linux, R-devel, clang, gfortran
-
-**NOTE:**
-
-* checking installed package size ... NOTE
-  installed size is  7.2Mb
-  sub-directories of 1Mb or more:
-    data      2.0Mb
-    extdata   2.3Mb
-    libs      2.5Mb
-
-### Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-
-**NOTE:**
-
-* checking installed package size ... NOTE
-  installed size is 83.0Mb
-  sub-directories of 1Mb or more:
-    data      2.0Mb
-    extdata   2.3Mb
-    gdal      3.8Mb
-    proj      5.0Mb
-    libs     69.6Mb
-
-### Debian Linux, R-devel, GCC ASAN/UBSAN
-
-**OK**
-
-### macOS 10.13.6 High Sierra, R-release, CRAN's setup [Where it failed last time]
-
-**NOTE:**
-
-* checking installed package size ... NOTE
-  installed size is 26.1Mb
-  sub-directories of 1Mb or more:
-    data      2.0Mb
-    extdata   2.3Mb
-    libs     21.5Mb
+    libs      5.9Mb
 
