@@ -18,18 +18,18 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: 
-    R (>= 3.4.4.0),
-    parallel,
+    R (>= 4.0.4.0),
+    parallel (>= 4.0.4)
 Imports:
-    Rcpp (>= 1.0.2),
-    methods,
-    raster,
-    rgeos,
-    rgdal,
-    sp
+    Rcpp (>= 1.0.7),
+    methods (>= 4.0.4),
+    raster (>= 3.4.13),
+    sp (>= 1.4.5)
 Suggests: 
-    testthat (>= 2.1.0),
-    signal
+    testthat (>= 3.0.4),
+    rgeos (>= 0.5.5),
+    signal (>= 0.7.7),
+    rgdal (>= 1.5.23)
 LinkingTo: Rcpp, RcppArmadillo
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
