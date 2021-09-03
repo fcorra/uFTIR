@@ -10,7 +10,7 @@ A S4 object of class "SpectralReference".
 \description{
 I made this class to hold spectral libraries. This libraries can be used to match a know spectrum with a pixel reading. \code{\link[=SpectralReference-class]{SpectralReference}} objects are used by several functions in the package, at all analysis stages (i.e. preprocessing, processing, and summarizing/plotting). You can see an example in the data \code{\link{primpke}} (you can load it by calling data("primpke")). The format includes character/integer vectors to hold the names of the polymers, cluster IDs, and cluster names, all of which should correspond to one another. It also hold a matrix with the spectra of each polymer, with rows matching the vectors provided and a fourth vector holding the wavelengts (that should be equal to the matrix cols).
 
-The example provided in the package was taken form Primpke, S., Wirth, M., Lorenz, C., Gerdts, G. 2018. Reference database design for the automated analysis of microplastic samples based on Fourier transform infrared (FTIR) spectroscopy. Analytical and Bioanalytical Chemistry 410: 5131-5141. You might access to the article here \url{https://doi.org/10.1007/s00216-018-1156-x}.
+The example provided in the package was taken form Primpke, S., Wirth, M., Lorenz, C., Gerdts, G. 2018. Reference database design for the automated analysis of microplastic samples based on Fourier transform infrared (FTIR) spectroscopy. Analytical and Bioanalytical Chemistry 410: 5131-5141. You might access to the article at doi: 10.1007/s00216-018-1156-x.
 
 If you have reference data that was taken considering a different range of wavenumbers, you should resample it first for the wavenumbers to match.
 }

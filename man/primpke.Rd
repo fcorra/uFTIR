@@ -15,7 +15,7 @@ an S4 \code{\link[=SpectralReference-class]{SpectralReference}} object with:
 }
 }
 \source{
-\url{https://doi.org/10.1007/s00216-018-1156-x}
+doi: 10.1007/s00216-018-1156-x
 }
 \usage{
 primpke
@@ -25,6 +25,6 @@ Example spectral library to be used in microplastic evaluations. An example on h
 
 It was taken form:
 
-Primpke, S., Wirth, M., Lorenz, C., Gerdts, G. 2018. Reference database design for the automated analysis of microplastic samples based on Fourier transform infrared (FTIR) spectroscopy. Analytical and Bioanalytical Chemistry 410: 5131-5141. You might access to the article here \url{https://doi.org/10.1007/s00216-018-1156-x}
+Primpke, S., Wirth, M., Lorenz, C., Gerdts, G. 2018. Reference database design for the automated analysis of microplastic samples based on Fourier transform infrared (FTIR) spectroscopy. Analytical and Bioanalytical Chemistry 410: 5131-5141. You might access to the article at doi: 10.1007/s00216-018-1156-x
 }
 \keyword{datasets}

@@ -4,7 +4,7 @@
 #' 
 #' It was taken form:
 #' 
-#' Primpke, S., Wirth, M., Lorenz, C., Gerdts, G. 2018. Reference database design for the automated analysis of microplastic samples based on Fourier transform infrared (FTIR) spectroscopy. Analytical and Bioanalytical Chemistry 410: 5131-5141. You might access to the article here \url{https://doi.org/10.1007/s00216-018-1156-x}
+#' Primpke, S., Wirth, M., Lorenz, C., Gerdts, G. 2018. Reference database design for the automated analysis of microplastic samples based on Fourier transform infrared (FTIR) spectroscopy. Analytical and Bioanalytical Chemistry 410: 5131-5141. You might access to the article at doi: 10.1007/s00216-018-1156-x
 #'
 #' @format an S4 \code{\link[=SpectralReference-class]{SpectralReference}} object with:
 #' \describe{
@@ -14,5 +14,5 @@
 #'   \item{Spectra}{matrix with the absorbance readings of each polymer (270 x 1176)}
 #'   \item{wavenumbers}{read wavenumbers. Correspond to Spectra ncol}
 #' }
-#' @source \url{https://doi.org/10.1007/s00216-018-1156-x}
+#' @source doi: 10.1007/s00216-018-1156-x
 "primpke"
