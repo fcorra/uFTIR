@@ -17,7 +17,7 @@ toClip(rad = 1, segments = 5, centre = c(0, 0))
 An object of class \code{\link[=clipmask-class]{clipmask}}.
 }
 \description{
-Visual aid to find the right center and radius for the \code{\link{clipper}} function. It does not clip, but return an usable (plotable) object.
+Visual aid to find the right center and radius for the \code{\link{clipper}} function. It does not clip, but return an usable (plotable) object. 
 
 Since the samples are placed under the uFTIR Microscope by hand, the cropping area to pass to \code{\link{clipper}} is not always the same and (usually) it has to be adjusted. To have a visual aid, you can use this function. It returns an S4 object of class \code{\link[=clipmask-class]{clipmask}} which can be over-plotted on top of a \code{\link[=SAM-class]{SAM}} or \code{\link[=Smooth-class]{Smooth}} object by calling \code{\link[graphics]{polygon}} and using the xycoords slot of the returned object. Using that process you can test manually different center points and radius for the clipping circle.
 }

@@ -13,7 +13,7 @@ tile_read(bspfile)
 An S4 Object of class \code{\link[=Tile-class]{Tile}}.
 }
 \description{
-The function loads a single tile to R as an object of class \code{\link[=Tile-class]{Tile}}.
+The function loads a single tile to R as an object of class \code{\link[=Tile-class]{Tile}}. 
 
 The function is also capable to load the toy mosaic produced by the Agilent sofware. You can do so by passing as bspfile parameter the .bsp file comprised in a mosaic folder. However, beware! the toy mosaic IS NOT the complete mosaic, it is only a reduced version of it (i.e. you will lose resolution, and you will not longer know the pixel size). Use it with care.
 }

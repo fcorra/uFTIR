@@ -10,7 +10,8 @@ mosaic_sam(
   derivative = NULL,
   base_corr = TRUE,
   FUN = NULL,
-  n_cores = NULL
+  n_cores = NULL,
+  temporal = FALSE
 )
 }
 \arguments{
@@ -25,9 +26,11 @@ mosaic_sam(
 \item{FUN}{A function to be passed to \code{\link{preprocess}}.It is always applied as if 'data' were a \code{\link[=SpectralPack-class]{SpectralPack}} object.}
 
 \item{n_cores}{The number of cores to parallelize the task. NULL means all cores -1.}
+
+\item{temporal}{Whether the file should be written in a temporal folder or in the folder where the main file lives.}
 }
 \value{
-TRUE
+The folder path where the files where written
 }
 \description{
 The function performs the spectral angle mapper algorithm chunk by chunk for the mosaics files. It uses the parallel package, and by default all cores -1.
@@ -38,7 +41,7 @@ The function is using the parallel package, as each tile_sam takes a while to co
 }
 \examples{
 x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
-mosaic_sam(x, primpke, n_cores = 1)
+mosaic_sam(x, primpke, n_cores = 1, temporal = TRUE)
 }
 \seealso{
 For a single tile application see \code{\link{tile_sam}}.

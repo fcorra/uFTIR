@@ -28,8 +28,8 @@ TileRead.wavealign(data.x, data.y)
 }
 \value{
 \itemize{
-\item \bold{TileRead.wavealign} - An object of class \code{\link[=SpectralPack-class]{SpectralPack}}
-\item \bold{MosaicGetRef.wavealign} - The \code{\link[=SpectralReference-class]{SpectralReference}} object passed as data.y, resampled to data.x.
+  \item \bold{TileRead.wavealign} - An object of class \code{\link[=SpectralPack-class]{SpectralPack}}
+  \item \bold{MosaicGetRef.wavealign} - The \code{\link[=SpectralReference-class]{SpectralReference}} object passed as data.y, resampled to data.x.
 }
 }
 \description{
@@ -38,8 +38,8 @@ It clips and resamples the wavenumbers of data.x and data.y to a common extent. 
 \details{
 There are two methods defined:
 \itemize{
-\item \bold{TileRead.wavealign} - This method should be the only one used by the user.
-\item \bold{MosaicGetRef.wavealign} - This method is called internally by \code{\link{mosaic_sam}}. The method is different since it expect a numeric vector in data.x, which is taken from the wavenumbers slot of a \code{\link[=SpectralInfo-class]{SpectralInfo}} object. The implication is that, for mosaics, the \code{\link[=SpectralReference-class]{SpectralReference}} is always resampled according to the wavenumbers of the mosaics. It was programed this way, since mosaics are not loaded into the memory (R) until they are processed by mosaic_sam.
+  \item \bold{TileRead.wavealign} - This method should be the only one used by the user.
+  \item \bold{MosaicGetRef.wavealign} - This method is called internally by \code{\link{mosaic_sam}}. The method is different since it expect a numeric vector in data.x, which is taken from the wavenumbers slot of a \code{\link[=SpectralInfo-class]{SpectralInfo}} object. The implication is that, for mosaics, the \code{\link[=SpectralReference-class]{SpectralReference}} is always resampled according to the wavenumbers of the mosaics. It was programed this way, since mosaics are not loaded into the memory (R) until they are processed by mosaic_sam.
 }
 }
 \examples{

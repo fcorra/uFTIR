@@ -73,7 +73,7 @@ matrix with the columns matching the wavenumbers of 'where'.
 \description{
 To check whether the program is doing a good job or not (an the library is appropriate), it is usually a good idea to recover the expectra of all the pixels that match a given cluster or substance to plot the spectra and compare it to a standard (the library entrance for that cluster/substance for example).
 
-This function allows you to retrieve the spectra of all pixels that match a given cluster/substance and returns a matrix that can then be plotted to do the checking. It also allows the user to plot the object and overlay the points that match a feature. The latter can be achieved also by using the \code{\link{highlight_substance}} function. However, that function is only implemented for S3 "clipper" objects, so this might be a way to overcome that limitation.
+This function allows you to retrieve the spectra of all pixels that match a given cluster/substance and returns a matrix that can then be plotted to do the checking. It also allows the user to plot the object and overlay the points that match a feature. The latter can be achieved also by using the \code{\link{highlight_substance}} function. However, that function is only implemented for S3 "clipper" objects, so this might be a way to overcome that limitation. 
 
 get_profile_all will replace get_profile_sinfo some day. For now it does the same thing BUT it works only for clipper objects and you need to pass the fpa size and the wavenumber (waves) vector. It was designed to run in the cluster. It goes well with \code{\link{sam_write}}, \code{\link{sam_load}}.
 }
