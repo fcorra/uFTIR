@@ -12,17 +12,18 @@
 #' @param base_corr TRUE/FALSE should \code{\link{tile_base_corr}} be call before processing each chunk?
 #' @param FUN A function to be passed to \code{\link{preprocess}}.It is always applied as if 'data' were a \code{\link[=SpectralPack-class]{SpectralPack}} object.
 #' @param n_cores The number of cores to parallelize the task. NULL means all cores -1.
+#' @param temporal Whether the file should be written in a temporal folder or in the folder where the main file lives.
 #'
 #' @return
-#' TRUE
+#' The folder path where the files where written
 #' 
 #' @export
 #' @seealso 
 #' For a single tile application see \code{\link{tile_sam}}.
 #' @examples
 #' x <- mosaic_info(base::system.file("extdata/mosaic.dmt", package = "uFTIR"))
-#' mosaic_sam(x, primpke, n_cores = 1)
-mosaic_sam <- function(info, sref, derivative = NULL, base_corr = TRUE, FUN = NULL, n_cores = NULL){
+#' mosaic_sam(x, primpke, n_cores = 1, temporal = TRUE)
+mosaic_sam <- function(info, sref, derivative = NULL, base_corr = TRUE, FUN = NULL, n_cores = NULL, temporal = FALSE){
   
   fname <- gsub(info@path, "", info@file)
   fname <- gsub(".dmt$", "", fname)
@@ -31,6 +32,12 @@ mosaic_sam <- function(info, sref, derivative = NULL, base_corr = TRUE, FUN = NU
   dmdfiles <- list.files(pattern = fname, path = info@path)
   dmdfiles <- dmdfiles[grep(".dmd$", dmdfiles)]
   
+  if (temporal) {
+     out_dir <- tempdir()
+  } else {
+     out_dir <- info@path
+  }
+
   if(is.null(n_cores)){
     n_cores <- detectCores() - 1  
   }
@@ -58,8 +65,8 @@ mosaic_sam <- function(info, sref, derivative = NULL, base_corr = TRUE, FUN = NU
               sam_out_name <- paste("sam_", name_out, ".bin", sep = "")
               sub_out_name <- paste("sub_", name_out, ".bin", sep = "")
               
-              sam_out_name <- paste(info@path, sam_out_name, sep = .Platform$file.sep)
-              sub_out_name <- paste(info@path, sub_out_name, sep = .Platform$file.sep)
+              sam_out_name <- paste(out_dir, sam_out_name, sep = .Platform$file.sep)
+              sub_out_name <- paste(out_dir, sub_out_name, sep = .Platform$file.sep)
               
               mosaic_sam_write(out@raw_sam, sam_out_name)
               mosaic_sam_write(out@substances, sub_out_name)
@@ -67,5 +74,5 @@ mosaic_sam <- function(info, sref, derivative = NULL, base_corr = TRUE, FUN = NU
   )
   stopCluster(cl)
   
-  TRUE
+  out_dir
 }
