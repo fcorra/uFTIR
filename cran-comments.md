@@ -1,44 +1,41 @@
 # 0.1.3 Version comments
 
-The package last version (0.1.2) was archived on 02 September 2021 as it used
-proj_api.h headers from PROJ4. Since PROJ8 removed the header, the package
-installation failed.
+The package last version (0.1.3) was archived on 27 September 2021 as it 
+wrote two examples into the user directory. This violates CRAN's policy.
 
-To fix the problem, I removed GDAL and PROJ from the SystemRequirements.  The
-package has now two new dependences; rgdal, and rgeos.
+To fix the problem, I added a new parameter to a function to write to a tempdir.
 
-I have checked the package both locally and remotelly, and I present a summary
-of the outputs (**NOTES: 2**).
+I have checked the package both locally and remotely, and I present a summary
+of the outputs (**NOTES: 1**).
 
 # Test environments
 
 ## Local
-   Linux 5.10.0-8-amd64 #1 SMP Debian 5.10.46-4 (2021-08-03) x86_64 GNU/Linux
+   Linux L02BACK 5.10.0-9-amd64 #1 SMP Debian 5.10.70-1 (2021-09-30) x86\_64 GNU/Linux
    Debian GNU/Linux 11 (bullseye)
    gcc (Debian 10.2.1-6) 10.2.1 20210110
 
-## Winbuilder
-
+## win-builder
+   R-devel
 
 ## Rhub
+   macOS 10.13.6 High Sierra, R-release, CRAN's setup
 
 # Check results
 
-**NOTE:**
 * checking CRAN incoming feasibility ... NOTE
    New submission
    Package was archived on CRAN
-   CRAN repository db overrides:
-     X-CRAN-Comment: Archived on 2021-09-02 as check problems were not
-       corrected in time.
-     Requires obsolete PROJ interface, so fail with PROJ 8 (despite the
-       SystemRequirements).
 
-**NOTE:**
-* checking installed package size ... NOTE
-  installed size is 10.5Mb
-  sub-directories of 1Mb or more:
-    data      2.0Mb
-    extdata   2.3Mb
-    libs      5.9Mb
+   Possibly misspelled words in DESCRIPTION:
+      Agilent (3:28, 15:61)
+      FTIR (3:45)
+      hyperspectral (15:95)
+      microplastic (16:28)
+      uFTIR (15:78)
+   
+   CRAN repository db overrides:
+   X-CRAN-Comment: Archived on 2021-09-27 for policy violation.
+
+
 

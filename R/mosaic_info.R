@@ -26,6 +26,10 @@ mosaic_info <- function(dmtfile){
             length(grep("^[[:upper:]]:.*", dmtfile)) == 1){
     dmtfile <- dmtfile
     
+  } else if(.Platform$OS.type == "windows" & 
+            length(grep("^[[:lower:]]:.*", dmtfile)) == 1){
+    dmtfile <- dmtfile
+
   } else if(length(
     grep(paste("^[^", .Platform$file.sep, "]", sep = ""), dmtfile)) == 1){
     dmtfile <- paste(getwd(), dmtfile, sep = .Platform$file.sep)
