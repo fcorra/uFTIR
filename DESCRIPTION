@@ -28,6 +28,8 @@ Imports:
 Suggests: 
     testthat (>= 3.1.0),
     rgeos (>= 0.5.8),
+    signal (>= 0.7.7),
+    rgdal (>= 1.5.27)
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.1.2
 Collate: 

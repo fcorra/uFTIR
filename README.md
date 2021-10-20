@@ -1,10 +1,4 @@
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # uFTIR
-
-**THE BRANCH hcl HAS MODIFICATIONS TO ADAPT THE PACKAGE TO THE
-HIGH-PERFORMANCE CLUSTER**
 
 An R package to read and process Agilent Cary 620 FTIR microscope
 -hyperspectral- images. As it is, the package performs image
@@ -28,11 +22,3 @@ When I wrote the package I took some ideas from:
     Henderson](https://bitbucket.org/AlexHenderson/agilent-file-formats/src/master/),
     published [here](https://doi.org/10.5281/zenodo.399238). He solved
     the Agilent-provides-binary-files problem.
-
-## Installation
-
-Install the current development from github via:
-
-``` r
-remotes::install_github("fcorra/uFTIR")
-```
