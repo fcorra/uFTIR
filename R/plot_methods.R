@@ -20,7 +20,7 @@ setClassUnion("plot.uFTIR", c("Tile", "SpectralPack", "SAM", "Smooth", "clipper"
 #' The function requires the raster package to plot. It coerses the matrix to raster to do so.
 #' 
 #' @return
-#' NULL
+#' A function that plots a tile and returns NULL.
 #' @export
 #' @rdname plot_tile
 #' @examples
@@ -97,7 +97,7 @@ plot_tile <- function(x, slice = 1, FUN = sum, match_uFTIR = FALSE, ...){
 #' @param ... other arguments for \code{\link{plot_tile}}
 #'
 #' @return
-#' NULL
+#' A function that plots and returns NULL.
 #' @export
 #' @examples
 #' x <- tile_read(base::system.file("extdata/tile.bsp", package = "uFTIR"))

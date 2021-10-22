@@ -6,7 +6,7 @@
 #' @param sam The sam that you want to write to disk
 #'
 #' @return
-#' NULL
+#' This function writes into the hard drive, it does not return anything.
 #' @export
 #'
 sam_write <- function(tile, sam){

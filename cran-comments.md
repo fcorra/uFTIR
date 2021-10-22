@@ -1,6 +1,6 @@
-# 0.1.3 Version comments
+# 0.1.4 Version comments
 
-The package last version (0.1.3) was archived on 27 September 2021 as it 
+The package last version (0.1.4) was archived on 27 September 2021 as it 
 wrote two examples into the user directory. This violates CRAN's policy.
 
 To fix the problem, I added a new parameter to a function to write to a tempdir.

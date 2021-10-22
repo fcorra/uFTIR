@@ -29,6 +29,9 @@ highlight_substance(
 
 \item{...}{other arguments for \code{\link{plot_tile}}}
 }
+\value{
+A function that plots and returns NULL.
+}
 \description{
 The function highlights a selected substance(s) -or cluster(s)- in a plot. It can add to an existing plot or create a new one. Currently implemented only for S3 objects returned by \code{\link{clipper}}.
 }

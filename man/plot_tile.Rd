@@ -22,6 +22,9 @@ plot_tile(x, slice = 1, FUN = sum, match_uFTIR = FALSE, ...)
 
 \item{match_uFTIR}{The Agilent Microscope transposes and inverts the image (it inverts rows only -cols after transposition). Do you want the plot function to match this behaviour? Default FALSE.}
 }
+\value{
+A function that plots a tile and returns NULL.
+}
 \description{
 Plotting method for objects of class \code{\link[=Tile-class]{Tile}}, \code{\link[=SpectralPack-class]{SpectralPack}}, \code{\link[=SAM-class]{SAM}}, \code{\link[=Smooth-class]{Smooth}}, and \code{\link{clipper}}.
 

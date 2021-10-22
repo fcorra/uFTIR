@@ -11,6 +11,9 @@ sam_write(tile, sam)
 
 \item{sam}{The sam that you want to write to disk}
 }
+\value{
+This function writes into the hard drive, it does not return anything.
+}
 \description{
 A wrapper to the C++ mosaic_sam_write
 }
